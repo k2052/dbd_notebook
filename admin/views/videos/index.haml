@@ -1,0 +1,31 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active=link_to pat(:list), url(:videos, :index)
+      %li=link_to pat(:new), url(:videos, :new)
+  .content
+    %h2.title
+      =pat(:all)
+      =mt(:video)
+    .inner
+      %table.table
+        %tr
+          %th.first=mat(:video, :title)
+          %th=mat(:video, :updated_at)
+          %th=mat(:video, :comment_count)
+          %th=mat(:video, :status)
+          %th.last="&nbsp;"
+        -@videos.each do |video|
+          %tr
+            %td.first=video.title
+            %td=video.updated_at
+            %td=video.comment_count
+            %td=video.status
+            %td.last
+              =button_to pat(:edit), url(:videos, :edit, :id => video.id), :method => :get, :class => :button_to
+              ="|"
+              =button_to pat(:delete), url(:videos, :destroy, :id => video.id), :method => :delete, :class => :button_to
+      .actions-bar.wat-cf
+        .actions="&nbsp;"
+
+-content_for :sidebar, partial("base/sidebar")

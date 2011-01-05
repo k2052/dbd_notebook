@@ -1,0 +1,9 @@
+# The rakefile is only used for deployment.    
+# The standard way of creating rake tasks in padrino is to place them in tasks/
+# and then run those tasks using padrino rake taskname 
+# This will give you access to the padrino app from within the rake task.
+begin
+  require "vlad"
+  Vlad.load
+rescue LoadError
+end

@@ -1,0 +1,4 @@
+%h4.task_title Form For | #{@task.title}
+-form_for :task, url(:tasks, :update, :id => @task.id), :method => :put, :class => :form do |f|
+  =partial "tasks/form", :locals => { :f => f} 
+=button_to pat(:delete), url(:tasks, :destroy, :id => @task.id), :method => :delete, :class => :button_to   

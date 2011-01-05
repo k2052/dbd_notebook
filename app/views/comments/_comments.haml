@@ -1,0 +1,17 @@
+- @comments_render = ''
+%ul#comments_list    
+  %li#comment_XXX.comment{:style => "display:none;"}
+    .meta_author 
+      .avatar 
+        .avatar_bg
+        %img.avatar_img{:src => "http://www.gravatar.com/avatar/hash?s=58"} 
+      %a.name{:href => "#"} Name
+    .comment_wrap   
+      .arrow
+      .comment <p>Your Comment Preview</p>
+    .meta_bottom     
+      .date_wrap 
+        .icon
+        .date=Time.now.strftime('%B %d, %Y at %l:%M %p')    
+  - loop_comments(@comments)  
+  = @comments_render

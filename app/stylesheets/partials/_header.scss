@@ -1,0 +1,103 @@
+#logo {
+  background: sprite-image('header/reserved.png');
+  width: 96px;
+  height: 30px;
+  position: absolute;
+  top: 25px;
+  left: 25px;
+}
+
+#header { margin-top: 30px !important; }  
+
+nav 
+{        
+  background: sprite-image('header/menu.png') no-repeat;
+  height: 57px;
+  width: 586px;   
+  
+  ul { margin: 20px 0 0 20px; float: left; }    
+  li
+  {
+    float: left;
+    margin-right: 12px;
+    a, a:visited {
+      color: #f5f3f3;
+      font-size: 13px;
+      font-family: Museo, "Helvetica Neu", Helvetica, sans-serif;
+      font-weight: bold;
+    }
+  }   
+  
+  .active a, a:hover, .active a:visited, a:visited:hover { color: #fffd0a; }
+}       
+
+#gist, #contact_details {
+  margin: 25px 0 0 20px;
+  width: 700px;
+}     
+
+#gist p { margin-bottom: 0px; }
+
+#day_night {
+  background: sprite-image('header/avatar_bg.png') no-repeat;
+  width: 89px;
+  height: 99px;
+  position: absolute;
+  right: 25px;
+  top: 15px;
+}
+  
+              #switcher { float: left; margin: 28px 0 0 -30px;}
+                   #day,
+                 #night { width: 21px; height: 21px; margin-bottom: 4px; }
+                   #day { background: sprite-image('header/day_select-default.png') no-repeat }
+                 #night { background: sprite-image('header/night_select-default.png') no-repeat }
+            #day.active,
+              .day #day { background: sprite-image('header/day_select-active.png') no-repeat }
+          #night.active,
+          .night #night { background: sprite-image('header/night_select-active.png') no-repeat }
+           .day #avatar { background: image-url('avatar_day.jpg') no-repeat }
+         .night #avatar { background: image-url('avatar_night.jpg') no-repeat }
+  .day #day_night_label,
+.night #day_night_label { margin: 12px auto 0 auto }
+  .day #day_night_label { background: sprite-image('header/during_day-label.png') no-repeat; width: 46px; height: 9px; }
+.night #day_night_label { background: sprite-image('header/at_night-label.png') no-repeat; width: 46px; height: 9px; }
+
+#avatar {
+  height: 70px;
+  margin: 18px 0 0 10px;
+  width: 68px;
+}
+ 
+#contact_details .close, #gist .close
+{
+  float: right;
+  position: relative;
+  margin: -70px -150px 0 0;
+  color: #393939;     
+  
+  .icon {      
+    background: sprite-image('misc/close.png') no-repeat;
+    width: 22px;
+    height: 22px;
+    margin: 0px auto;
+  }      
+  .label { margin-top: 8px; display: block; }
+}                                         
+                  .close:hover { font-weight: bold; }   
+#contact_details .close .label { margin: 12px 0 0 -5px; position: relative; top: 6px; }  
+
+#contact_details 
+{     
+               p { margin-bottom: 12px; font-size: 13px; float: left; }
+              ul,
+              li,
+         a.label,
+           .icon { float: left }
+              li { margin: 0 16px 16px 0 }
+         a.label { padding: 2px 0 0 8px }
+    #email .icon { background: sprite-image('contact/email-icon.png'); width: 16px; height: 16px; }
+  #twitter .icon { background: sprite-image('contact/twitter-icon.png'); width: 16px; height: 16px; }
+    #skype .icon { background: sprite-image('contact/skype-icon.png'); width: 16px; height: 16px; }
+    #gtalk .icon { background: sprite-image('contact/gtalk-icon.png'); width: 16px; height: 16px; }
+}

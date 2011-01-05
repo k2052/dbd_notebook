@@ -1,0 +1,28 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first=link_to pat(:list), url(:audios, :index)
+      %li=link_to pat(:new), url(:audios, :new)            
+      %li.active=link_to pat(:edit), url(:audios, :edit, :id => @audio.id)
+  .content
+    %h2.title
+      =pat(:edit)
+      =mt(:audio)
+    .inner
+      -form_for :audio, url(:audios, :update, :id => @audio.id), :method => :put, :class => :form do |f|
+        =partial "audios/form", :locals => { :f => f }   
+        
+      #file_form   
+        Audio Upload
+        .filelist No runtime found.    
+        %a{ :id => :pickfiles, :href => url(:audios, :upload_audio, :id => @audio.id) } [Select files]  
+        %a{ :class => :uploadfiles, :href => "#"} [Upload files]   
+       
+      - if @audio.commentary === nil   
+        -form_for :commentary, url(:commentaries, :create, :type => @audio.class, :pid => @audio.id), :method => :put, :class => :form do |f|
+          =partial "commentaries/form", :locals => { :f => f }             
+      - else                                                               
+        -form_for :commentary, url(:commentaries, :update, :type => @audio.class, :pid => @audio.id), :method => :put, :class => :form do |f|
+          =partial "commentaries/form", :locals => { :f => f }    
+
+-content_for :sidebar, partial("base/sidebar")

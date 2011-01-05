@@ -1,0 +1,39 @@
+#comment_form_wrap.vertical{:style => "display: none;"}     
+  #form_inner
+    .arrow
+    .close_wrap  
+      %a#comment_close.hideTxt{:href => "#comment_form_vertical"} Close
+    .top  
+    .middle  
+      .inner       
+        %h3 Leave a Comment
+        -form_for :comment, url(:comments, :create, :slug => @post.slug), :method => :post, :class => :form, :id => :comment_form do |f|   
+          %fieldset{:class => :user_info}   
+            .field_wrap
+              =f.text_field :name, :class => :text_field, :title => "First Name, Last Name" 
+              .required
+            .field_wrap
+              =f.text_field :email, :class => :text_field, :title => 'Email', :value => ''      
+              .required  
+            .field_wrap
+              =f.text_field :url, :class => :text_field, :title => 'Site URL'
+          #comment_field  
+            .field_wrap
+              =f.text_area :cmnt_src, :class => :text_field, :rows => 10, :cols => 18, :title => 'Comment Here.' 
+              .required  
+              .label <sup>*</sup> Use Markdown to format your comments.          
+          =f.hidden_field :parent_id, :value => nil      
+          <input style="display:none;" type="text" name="username"></input>
+          .hiddenArea{:style => "display:none;" }
+            if you can see this don't fill out the above input
+          =f.text_field :author_hidden, :class => :zeroIT
+          .field_wrap.submit_wrap
+            =f.submit "submit comment", :class => :button     
+          .clear  
+        %a#switch_horizontal.switch_form{:href => "#comment_form"} Switch To Horizontal Form    
+        %a#switch_vertical.switch_form{:href => "#comment_form", :style => "display:none;"} Switch To Vertical Form  
+    .bottom_wrap 
+      .bottom     
+      .char_count
+        %span.count 300
+        chars remain. use them well    

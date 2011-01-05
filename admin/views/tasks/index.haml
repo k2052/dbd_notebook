@@ -1,0 +1,33 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active=link_to pat(:list), url(:tasks, :index)
+      %li=link_to pat(:new), url(:tasks, :new)
+  .content
+    %h2.title
+      =pat(:all)
+      =mt(:task)
+    .inner
+      %table.table
+        %tr
+          %th.first=mat(:task, :title)
+          %th=mat(:task, :thing_id)
+          %th=mat(:task, :updated_at)
+          %th=mat(:task, :note_intro)
+          %th=mat(:task, :status)
+          %th.last="&nbsp;"
+        -@tasks.each do |task|
+          %tr
+            %td.first=task.title
+            %td=task.thing_id
+            %td=task.updated_at
+            %td=task.note_intro
+            %td=task.status
+            %td.last
+              =button_to pat(:edit), url(:tasks, :edit, :id => task.id), :method => :get, :class => :button_to
+              ="|"
+              =button_to pat(:delete), url(:tasks, :destroy, :id => task.id), :method => :delete, :class => :button_to
+      .actions-bar.wat-cf
+        .actions="&nbsp;"
+
+-content_for :sidebar, partial("base/sidebar")

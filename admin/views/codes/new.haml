@@ -1,0 +1,14 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first=link_to pat(:list), url(:codes, :index)
+      %li.active=link_to pat(:new), url(:codes, :new)
+  .content
+    %h2.title
+      =pat(:new)
+      =mt(:code)
+    .inner
+      -form_for :code, url(:codes, :create), :class => :form do |f|
+        =partial "codes/form", :locals => { :f => f }
+
+-content_for :sidebar, partial("base/sidebar")

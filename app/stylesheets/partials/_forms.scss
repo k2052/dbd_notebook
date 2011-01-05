@@ -1,0 +1,13 @@
+.form_resp
+{
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 auto;
+  padding: 20px 10px 0 20px;
+  position: absolute;
+  top: 120px;
+  width: 83%;
+  z-index: 100; 
+   .message { float: left; }
+  .close_me { float: right; }
+}

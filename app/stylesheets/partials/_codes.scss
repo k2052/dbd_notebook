@@ -1,0 +1,126 @@
+/** These Styles Based on the RailsCast TextMate Theme */
+article.code 
+{
+  .no {
+    background: #242424;
+    color: #fff;
+    display: inline-block;
+    padding: 5px 5px 5px 10px;
+    width: 20px;     
+    font-size: 12px;
+    line-height: 14px;
+  }     
+  
+        .code { background: #2B2B2B; color: #E6E1DC; overflow-y: hidden; overflow-x: scroll; font-family: Monaco,monospace; }
+  .code > pre { padding: 30px 0px 15px 0px; white-space: pre; }
+           .r { color: #CC7833 } /* KeyWord **/
+          .fu { color: #FFC66D } /* Function (definition) */
+          .co { color: #DA4939 } /* Constant (other variable) */
+           .s { color: #519F50 } /* String interpolation */
+          .cl { color: #E8BF6A } /* Markup tag */
+          .ke { color: #6D9CBE } /* Constant */
+          .fl { color: #A5C261 } /* Numeric/Float */
+          .er { color: #DA4939 } /* Library function */
+          .vl { color: #A5C261 } /* Library constant */
+          .pc { color: #D0D0FF } /* Variable */
+          .sy { color: #6D9CBE } /* Constant */
+           .c { color: #BC9458 } /* Comment */
+} 
+       
+/** These Styles Based on the Freckle TextMate Theme */
+.snippet 
+{
+  margin-left: -25px;
+  width: 706px;   
+  
+  .code {
+    /* height: 350px; */
+    overflow-y: hidden;
+    overflow-x: scroll;
+    font-family: Monaco,monospace; 
+    position: relative;
+    top: -45px;   
+    font-size: 10px;   
+    color: #fefefe;    
+    height: 300px;
+  }   
+  
+  .no {
+    background: #242424;
+    color: #fff;
+    display: inline-block;
+    padding: 5px 5px 5px 10px;
+    width: 20px;     
+    font-size: 11px;
+    line-height: 14px;
+  }   
+  
+          .snippet_top,
+       .snippet_bottom,
+       .snippet_middle { width: 698px }
+          .snippet_top { height: 74px; background: sprite-image('snippet/snippet_top.png') no-repeat; }
+       .snippet_middle { background: image-url('post_middles/snippet_middle.png') repeat-y }
+  .snippet_bottom_wrap { background: image-url('post_middles/default_middle.png') repeat-y; margin: -79px 0 -14px 0; height: 110px; }
+       .snippet_bottom { height: 79px; background: sprite-image('snippet/snippet_bottom.png') no-repeat; margin-top: -110px; }
+
+  .code > pre { white-space: pre; padding: 0px 15px 0 0; word-wrap: normal; }
+          .r { color: #ffff00 } /* KeyWord **/
+         .fu { color: #00202d } /* Function (definition) */
+         .co { color: #00202d } /* Constant (other variable) */
+          .s { color: #222 } /* String interpolation */
+         .cl { color: #ffd4ff } /* Markup tag */
+         .ke { color: #00202d } /* Constant */
+         .fl { color: #0d0e0b } /* Numeric/Float */
+         .er { color: #ffff00 } /* Library function */
+         .vl { color: #d1ff56 } /* Library constant */
+         .pc { color: #00202d } /* Variable */
+         .sy { color: #00202d } /* Constant */
+          .c { color: #242424 } /* Comment */   
+  
+  .tools {
+    float: right;
+    position: absolute;    
+    width: 100%;   
+    z-index: 100;
+  }   
+  
+  .expand_snippet {
+    background: sprite-image('snippet/expand.png') no-repeat;
+    float: right;
+    height: 24px;
+    margin-right: 30px;
+    position: relative;
+    top: -40px;
+    width: 66px;
+    z-index: 100;
+    opacity: 0.6;
+  }    
+    
+  .collapse_snippet {
+    background: sprite-image('snippet/collapse.png') no-repeat;
+    float: right;
+    height: 24px;
+    margin-right: 30px;
+    position: relative;
+    top: -40px;
+    width: 66px;
+    z-index: 100;
+    opacity: 0.6;
+  }    
+
+  .copy_snippet {
+    width: 73px;
+    height: 52px;
+    background: sprite-image('snippet/copy_icon.png') no-repeat;    
+    text-indent: -9999px;
+    display: block;  
+    opacity: 0.6;  
+    float: right;
+    position:relative;
+    right:20px;
+    text-indent:-9999px;
+    top:-58px;
+  }
+  
+  .copy_snippet:hover, .expand_snippet:hover, .collapse_snippet:hover { opacity: 1.0; }       
+}

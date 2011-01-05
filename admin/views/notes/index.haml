@@ -1,0 +1,31 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active=link_to pat(:list), url(:notes, :index)
+      %li=link_to pat(:new), url(:notes, :new)
+  .content
+    %h2.title
+      =pat(:all)
+      =mt(:note)
+    .inner
+      %table.table
+        %tr
+          %th.first=mat(:note, :title)
+          %th=mat(:note, :updated_at)
+          %th=mat(:note, :comment_count)
+          %th=mat(:note, :status)
+          %th.last="&nbsp;"
+        -@notes.each do |note|
+          %tr
+            %td.first=note.title
+            %td=note.updated_at
+            %td=note.comment_count
+            %td=note.status
+            %td.last
+              =button_to pat(:edit), url(:notes, :edit, :id => note.id), :method => :get, :class => :button_to
+              ="|"
+              =button_to pat(:delete), url(:notes, :destroy, :id => note.id), :method => :delete, :class => :button_to
+      .actions-bar.wat-cf
+        .actions="&nbsp;"
+
+-content_for :sidebar, partial("base/sidebar")

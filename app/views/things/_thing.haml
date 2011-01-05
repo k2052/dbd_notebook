@@ -1,0 +1,33 @@
+%article.thing
+  %header 
+    %a{:href => "#{@post.slug}", :class => :post_title}
+      %h1.post_title= @post.title
+    .meta_top
+      .date= "#{@post.created_at.strftime('%B %d')}, #{@post.created_at.strftime('%Y')}"
+  .main
+    .middle
+      - if @post.tasks 
+        = partial "tasks/tasks"
+      - elsif @post.lists
+        = partial "lists/lists"
+    .bottom_wrap
+      .bottom
+    .meta_bottom
+      .links  
+        %a.read_more{:href => "#{@post.slug}"} read more
+        |
+        %a.leave_comment{:href => "#{@post.slug}/#comment_form"} leave a comment; Optionally you may leave a well structured grammatical error.
+      %a.comment_count{:href => "#{@post.slug}/#comment_form"}
+        %span.count= @post.comment_count 
+  .side_bar  
+    .tags.block
+      %h2.tags_head Tags
+      - tags = @post.tags.split(',')
+      %ul.tags_list 
+        - tags.each do |tag|
+          %li.tag
+            %a.tag_link{:href => "tags/#{tag}"}
+              %span= tag     
+    .type.block  
+      %h2.type_head Type
+      %a.type{:href => "type/#{@post.class.to_s.downcase}"}= @post.class

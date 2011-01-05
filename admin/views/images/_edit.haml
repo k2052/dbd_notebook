@@ -1,0 +1,6 @@
+- @gallery.images.each do |@image|     
+  %h4.image_title Form For   
+  = image_tag(@image.image.thumb, :alt => :preview_screenshot) 
+  -form_for :image, url(:images, :update, :id => @image.id, :pid => @gallery.id), :method => :put, :class => :form do |f|
+    =partial "images/form", :locals => { :f => f} 
+  =button_to pat(:delete), url(:images, :destroy, :id => @image.id, :pid => @gallery.id), :method => :delete, :class => :button_to

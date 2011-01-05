@@ -1,0 +1,31 @@
+.block
+  .secondary-navigation
+    %ul.wat-cf
+      %li.first.active=link_to pat(:list), url(:defaults, :index)
+      %li=link_to pat(:new), url(:defaults, :new)
+  .content
+    %h2.title
+      =pat(:all)
+      =mt(:default)
+    .inner
+      %table.table
+        %tr
+          %th.first=mat(:default, :title)
+          %th=mat(:default, :updated_at)
+          %th=mat(:default, :comment_count)
+          %th=mat(:default, :status)
+          %th.last="&nbsp;"
+        -@defaults.each do |default|
+          %tr
+            %td.first=default.title
+            %td=default.updated_at
+            %td=default.comment_count
+            %td=default.status
+            %td.last
+              =button_to pat(:edit), url(:defaults, :edit, :id => default.id), :method => :get, :class => :button_to
+              ="|"
+              =button_to pat(:delete), url(:defaults, :destroy, :id => default.id), :method => :delete, :class => :button_to
+      .actions-bar.wat-cf
+        .actions="&nbsp;"
+
+-content_for :sidebar, partial("base/sidebar")

@@ -1,0 +1,57 @@
+.group
+  =f.label :title
+  =f.error_message_on :title
+  =f.text_field :title, :class => :text_field
+  %span.description Ex: a simple text
+  
+.group
+  =f.label :intro_src
+  =f.error_message_on :intro_src
+  =f.text_area:intro_src, :class => :text_field
+  %span.description Ex: a simple text       
+  
+.group
+  =f.label :body_src
+  =f.error_message_on :body_src
+  =f.text_area :body_src, :class => :text_field
+  %span.description Ex: a simple text      
+  
+.group
+  =f.label :embed
+  =f.error_message_on :embed
+  =f.text_area :embed, :class => :text_field
+  %span.description Ex: a simple text  
+
+.group
+  =f.label :src
+  =f.error_message_on :src
+  =f.text_field :src, :class => :text_field
+  %span.description Ex: a simple text      
+  
+.group
+  =f.label :src_link
+  =f.error_message_on :src_link
+  =f.text_field :src_link, :class => :text_field
+  %span.description Ex: a simple text  
+
+.group
+  =f.label :tags
+  =f.error_message_on :tags
+  =f.text_field :tags, :class => :text_field
+  %span.description Ex: a simple text
+
+.group
+  =f.label :length
+  =f.error_message_on :length
+  =f.text_field :length, :class => :text_field
+  %span.description Ex: a simple text
+
+.group
+  =f.label :status
+  =f.error_message_on :status
+  =f.text_field :status, :class => :text_field
+  %span.description Ex: a simple text
+
+.group.navform.wat-cf
+  =f.submit pat(:save), :class => :button
+  =f.submit pat(:cancel), :onclick => "window.location='#{url(:videos, :index)}';return false", :class => :button
