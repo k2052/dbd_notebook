@@ -6,7 +6,7 @@ load(heroku_env) if File.exists?(heroku_env)
 backup 'mongodb-backup-s3' do
 
   adapter :mongo do
-    database ENV['app_name']
+    database "#{ENV['app_name']}_production" 
   end
 
   storage :s3 do

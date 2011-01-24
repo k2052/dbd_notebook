@@ -48,18 +48,10 @@ namespace :vlad do
    
   task :push_git do 
     %x{git push web master}
-  end
-  
-  task :bundle_package do
-    %x{bundle package}
-  end  
-  
-  task :push_vendor_cache do
-    upload("vendor", "/home/#{deploy_user}/#{app_domain_name}/#{app_name}")
-  end 
+  end   
         
   remote_task :bundle_install do    
-    run "cd /home/#{deploy_user}/#{app_domain_name}/#{app_name} && sudo bundle install --local"
+    run "cd /home/#{deploy_user}/#{app_domain_name}/#{app_name} && sudo bundle install"
   end     
   
   remote_task :parse_nginx_template do 
@@ -78,19 +70,7 @@ namespace :vlad do
   remote_task :restart_nginx do    
     run "sudo /etc/init.d/nginx stop"
     run "sudo /etc/init.d/nginx start"
-  end  
-       
-  remote_task :start_thin do 
-    run "cd /home/#{deploy_user}/#{app_domain_name}/#{app_name} && sudo bundle exec thin start -C /etc/thin/#{app_name}.yml"   
-  end  
-    
-  remote_task :stop_thin do    
-    run "cd /home/#{deploy_user}/#{app_domain_name}/#{app_name} && sudo bundle exec thin stop -C /etc/thin/#{app_name}.yml"
-  end  
-
-  remote_task :write_thin_config do 
-    run "cd /home/#{deploy_user}/#{app_domain_name}/#{app_name} && sudo bundle exec thin config -C /etc/thin/#{app_name}.yml -c /home/#{deploy_user}/#{app_domain_name}/#{app_name} --servers 3 -e production"
-  end  
+  end   
   
   task :create_mongodb_dump do
     %x{mongodump -d #{db_name}}
@@ -115,23 +95,18 @@ task "vlad:predeploy" => %w[
   vlad:server_prep
 ]
 
-task "vlad:deploy" => %w[  
+task "vlad:deployit" => %w[  
   vlad:setup_git
   vlad:setup_git_local
-  vlad:push_git   
-  vlad:push_vendor_cache    
+  vlad:push_git      
   vlad:bundle_install
   vlad:parse_nginx_template
   vlad:setup_nginx_vhost
-  vlad:write_thin_config    
-  vlad:remote_update_crontab
-  vlad:start_thin  
-  vlad:restart_nginx  
-]    
-
-task "vlad:update" => %w[  
-  vlad:push_git    
-  vlad:stop_thin
-  vlad:start_thin 
   vlad:restart_nginx
+  vlad:remote_update_crontab
 ] 
+
+task "vlad:updateit" => %w[  
+  vlad:push_git    
+  vlad:restart_nginx
+]
