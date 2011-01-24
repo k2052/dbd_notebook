@@ -5,9 +5,6 @@ gem 'sinatra', '1.1.0'
 gem 'rake'
 gem 'rack-flash'
 gem 'thin' # or mongrel  
-gem 'god'  
-gem 'vlad'
-gem 'vlad-git'
 
 # Component requirements   
 gem 'magic' 
