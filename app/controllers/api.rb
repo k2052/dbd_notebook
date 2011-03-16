@@ -16,13 +16,13 @@ DbdNotebook.controllers :api do
     @note.save
   end  
   
-  post :post_create, :map => '/api/post/create' do 
+  post :post_create, :map => '/api/posts/create' do 
     @post = Post.new.from_json(params[:post])
     @post.save
   end   
   
-  post :commentary_create, :map => '/api/commentaries/post' do 
-    @commentary = Post.new.from_json(params[:commentary])
+  post :commentary_create, :map => '/api/commentaries/create' do 
+    @commentary = Commentary.new.from_json(params[:commentary])
     @commentary.save
   end
   
