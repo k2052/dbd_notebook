@@ -13,17 +13,29 @@ DbdNotebook.controllers :api do
 
   post :note_create, :map => '/api/notes/create' do 
     @note = Note.new.from_json(params[:note])
-    @note.save
+    if @note.save
+      'Saved Note Successfully'
+    else
+      @note.errors.full_messages   
+    end
   end  
   
   post :post_create, :map => '/api/posts/create' do 
     @post = Post.new.from_json(params[:post])
-    @post.save
+    if @post.save
+      'Saved Post Successfully'
+    else
+      @post.errors.full_messages   
+    end
   end   
   
   post :commentary_create, :map => '/api/commentaries/create' do 
     @commentary = Commentary.new.from_json(params[:commentary])
-    @commentary.save
+    if @commentary.save
+      'Saved Commentary Successfully'
+    else
+      @commentary.errors.full_messages   
+    end
   end
   
   post :thing_create, :map => '/api/things/create' do   
