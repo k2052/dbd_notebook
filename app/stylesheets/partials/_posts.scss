@@ -320,7 +320,7 @@ article.thing
        .view_note { margin-left: 10px }
             .icon { width: 19px; height: 22px; background: sprite-image('misc/unchecked.png') no-repeat; float: left; margin: 1.5px 10px 0 0; }
   .completed .icon 
-                  { background: sprite-image('misc/checked.png') no-repeat }
+                  { height: 20px; background: sprite-image('misc/checked.png') no-repeat }
       .note .icon { margin-top: 7px }
 }   
  
@@ -337,7 +337,7 @@ article.thing
           .top { width: 724px; height: 191px; background: sprite-image('post/note_popup_top.png') no-repeat; }
        .middle { background: image-url('post_middles/note_popup_middle.png') repeat-y }
   .bottom_wrap { background: image-url('body.png') repeat; height: 140px; }
-       .bottom { height: 52px; background: sprite-image('post/note_popup_bottom.png') no-repeat; margin-top: -160px; }
+       .bottom { height: 28px; background: sprite-image('post/note_popup_bottom.png') no-repeat; margin-top: -160px; }
   
   .note {
     margin: 0 auto;
