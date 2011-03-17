@@ -12,7 +12,7 @@ DbdNotebook.controllers :api do
   end  
 
   post :note_create, :map => '/api/notes/create' do 
-    @note = Note.new.from_json(params[:note])
+    @note = Note.new.from_json(params[:post])
     if @note.save
       'Saved Note Successfully'
     else
@@ -20,7 +20,10 @@ DbdNotebook.controllers :api do
     end
   end  
   
-  post :post_create, :map => '/api/posts/create' do 
+  post :post_create, :map => '/api/posts/create' do    
+    if params[:type] != nil 
+      type =  params[:type].to_s
+    end
     @post = Post.new.from_json(params[:post])
     if @post.save
       'Saved Post Successfully'
@@ -39,7 +42,7 @@ DbdNotebook.controllers :api do
   end   
   
   post :commentary_create, :map => '/api/commentaries/create' do 
-    @commentary = Commentary.new.from_json(params[:commentary])
+    @commentary = Commentary.new.from_json(params[:post])
     if @commentary.save
       'Saved Commentary Successfully'
     else

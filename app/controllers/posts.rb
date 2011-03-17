@@ -47,7 +47,6 @@ DbdNotebook.controllers :posts do
         @type =  {:$exists => true}   
       else 
         @type = params[:type].match(/^([A-Za-z0-9-]+)/i).to_s.downcase.capitalize
-        puts @type
       end      
     
       # In our view will pass this object to menu builder helper.
