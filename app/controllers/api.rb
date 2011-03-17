@@ -12,7 +12,7 @@ DbdNotebook.controllers :api do
   end  
 
   post :note_create, :map => '/api/notes/create' do 
-    @note = Note.new.from_json(params[:post])
+    @note = Note.from_json(params[:post])
     if @note.save
       'Saved Note Successfully'
     else
@@ -21,11 +21,15 @@ DbdNotebook.controllers :api do
   end  
   
   post :post_create, :map => '/api/posts/create' do  
-    type = params[:type].to_s 
+    type = params[:type].to_s        
+    
     if !type.empty?() 
       type = type.match(/^([A-Za-z0-9-]+)/i).to_s.downcase.capitalize    
-    end   
-    eval "@post = type.new.from_json(params[:post])"
+    end              
+    
+    postclass = Object.const_get(type)
+    @post = postclass.from_json(params[:post])        
+    
     if @post.save
       'Saved Post Successfully'
     else
@@ -34,7 +38,7 @@ DbdNotebook.controllers :api do
   end
   
   post :default_create, :map => '/api/defaults/create' do 
-    @default = Default.new.from_json(params[:post])
+    @default = Default.from_json(params[:post])
     if @default.save
       'Saved Default Post Successfully'
     else
@@ -43,7 +47,7 @@ DbdNotebook.controllers :api do
   end   
   
   post :commentary_create, :map => '/api/commentaries/create' do 
-    @commentary = Commentary.new.from_json(params[:post])
+    @commentary = Commentary.from_json(params[:post])
     if @commentary.save
       'Saved Commentary Successfully'
     else
@@ -52,7 +56,7 @@ DbdNotebook.controllers :api do
   end
   
   post :thing_create, :map => '/api/things/create' do   
-    @thing = Thing.new.from_json(params[:thing])
+    @thing = Thing.from_json(params[:thing])
     @thing.save
   end 
   
