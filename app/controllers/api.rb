@@ -56,8 +56,18 @@ DbdNotebook.controllers :api do
   end
   
   post :thing_create, :map => '/api/things/create' do   
-    @thing = Thing.from_json(params[:thing])
-    @thing.save
+    thing = JSON.parse(params[:thing])        
+    old = Thing.first(:title => thing['title'])   
+    if old
+      @thing = old
+    else   
+      @thing = Thing.new(thing)     
+      if @thing.save
+        'Saved Thing Successfully'
+      else
+        @thing.errors.full_messages   
+      end
+    end
   end 
   
   # I use this to import items from The Hit List but its just a nested JSON structure
