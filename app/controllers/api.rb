@@ -59,7 +59,12 @@ DbdNotebook.controllers :api do
     thing = JSON.parse(params[:thing])        
     old = Thing.first(:title => thing['title'])   
     if old
-      @thing = old
+      @thing = old 
+      if @thing.update_attributes(thing)   
+        'Saved Thing Successfully'
+      else
+        @thing.errors.full_messages   
+      end
     else   
       @thing = Thing.new(thing)     
       if @thing.save
