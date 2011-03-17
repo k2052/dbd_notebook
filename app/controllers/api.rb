@@ -20,11 +20,12 @@ DbdNotebook.controllers :api do
     end
   end  
   
-  post :post_create, :map => '/api/posts/create' do    
-    if params[:type] != nil 
-      type =  params[:type].to_s
-    end
-    @post = Post.new.from_json(params[:post])
+  post :post_create, :map => '/api/posts/create' do  
+    type = params[:type].to_s 
+    if !type.empty?() 
+      type = type.match(/^([A-Za-z0-9-]+)/i).to_s.downcase.capitalize    
+    end   
+    eval "@post = type.new.from_json(params[:post])"
     if @post.save
       'Saved Post Successfully'
     else
