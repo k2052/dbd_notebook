@@ -27,6 +27,15 @@ DbdNotebook.controllers :api do
     else
       @post.errors.full_messages   
     end
+  end
+  
+  post :default_create, :map => '/api/defaults/create' do 
+    @default = Default.new.from_json(params[:post])
+    if @default.save
+      'Saved Default Post Successfully'
+    else
+      @default.errors.full_messages   
+    end
   end   
   
   post :commentary_create, :map => '/api/commentaries/create' do 
