@@ -12,16 +12,17 @@ DbdNotebook.controllers :comments do
       if @comment.save   
         if @post.save     
           error_hash = {:errorCode => :success, :message => "Your comment has been submitted. It will undergo an examination for spam and then appear shortly thereafter."}
-          error_hash.to_json
+          ret = error_hash.to_json
         else   
           error_hash = {:errorCode => :failure, :message => @post.errors.full_messages}
-          error_hash.to_json
+          ret = error_hash.to_json
         end 
       else       
         error_hash = {:errorCode => :failure, :message => @comment.errors.full_messages}
-        error_hash.to_json
+        ret = error_hash.to_json
       end 
-      Navvy::Job.enqueue(SpamChecker, :comment_spam, @comment)
+      Navvy::Job.enqueue(SpamChecker, :comment_spam, @comment)   
+      return ret
     else
       "This form only accpts a valid submission submitted via ajax. Please enable javascript in your browser and try again."
     end
