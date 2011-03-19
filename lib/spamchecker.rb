@@ -2,7 +2,8 @@
 module SpamChecker     
   extend self  
   
-  def comment_spam(comment, parent_comment_id = nil)    
+  def comment_spam(commentID, parent_comment_id = nil)     
+    comment = Commend.first(:id => commentID) 
     Defender.api_key = ENV['DEFENSIO_KEY']
     document         = Defender::Document.new  
     

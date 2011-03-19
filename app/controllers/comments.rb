@@ -20,9 +20,9 @@ DbdNotebook.controllers :comments do
       else       
         error_hash = {:errorCode => :failure, :message => @comment.errors.full_messages}
         ret = error_hash.to_json
-      end 
-      Navvy::Job.enqueue(SpamChecker, :comment_spam, @comment)   
-      return ret
+      end     
+      Navvy::Job.enqueue(SpamChecker, :comment_spam, @comment.id)   
+      ret
     else
       "This form only accpts a valid submission submitted via ajax. Please enable javascript in your browser and try again."
     end
