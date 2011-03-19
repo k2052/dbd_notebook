@@ -83,7 +83,7 @@ class Comment
   
   # Return an array of comments, threaded.
   def self.threaded_with_field(post, field_name='created_at')
-    comments = Comment.all(:conditions => {:post_id => post.id}, :order => "path asc, #{field_name} asc")
+    comments = Comment.all(:conditions => {:post_id => post.id, :allow => true, :checked => true}, :order => "path asc, #{field_name} asc")
     results, map  = [], {}
     comments.each do |comment|  
       if comment.parent_id.blank?
