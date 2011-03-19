@@ -10,7 +10,6 @@ DbdNotebook.controllers :comments do
       @comment.checked = false
       @comment.post_id = @post.id    
       if @comment.save   
-        @post.comment_count = @post.comment_count + 1  
         if @post.save     
           error_hash = {:errorCode => :success, :message => "Your comment has been submitted. It will undergo an examination for spam and then appear shortly thereafter."}
           error_hash.to_json
@@ -35,8 +34,11 @@ DbdNotebook.controllers :comments do
     cdoc = params[:document]
     if cdoc.allow == false   
       @post.comment_count = @post.comment_count - 1         
+      @post.save    
+    elsif cdoc.allow == true
+      @post.comment_count = @post.comment_count + 1   
       @post.save
-    end
+    end        
     Comment.spam_update(@comment.id, cdoc.allow)
   end 
 
