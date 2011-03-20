@@ -22,12 +22,8 @@ Padrino.before_load do
   # Load App Specific Config
   my_config = File.join(File.dirname(__FILE__), 'config.rb')
   load(my_config) if File.exists?(my_config)
-end
+end   
 
-##
-# Add here your after load hooks
-#
-Padrino.after_load do
-end
+set :padrino_logging, false 
 
 Padrino.load!    
