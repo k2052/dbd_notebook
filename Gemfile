@@ -27,7 +27,8 @@ gem 'paginator'
 gem 'chronic'  
 gem 'nokogiri' 
 gem 'whenever'
-gem 'backup'
+gem 'backup'     
+gem 'resque'
 
 # Test requirements
 gem 'shoulda', :group => "test"

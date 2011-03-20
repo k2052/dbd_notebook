@@ -22,7 +22,7 @@ DbdNotebook.controllers :posts do
   # Increased control means we can accomplish things like SEF paginaiton urls.
   # If we surrender control to paginators for our urls then where does it stop?
   # Soon they'll be paginating humans, can you imagine clicking next before peeing? I cant. That is a wrold I refuse to live in.
-  get :tag, :map => '/tags/(:tag)/(page)/(:page)' do
+  get :tag, :map => '/tags(/:tag)(/page/:page)' do
     pagenum = params[:page].to_i  
     if pagenum.is_a?(Numeric) || params[:page] == nil    
       if params[:tag] != nil     
@@ -37,7 +37,7 @@ DbdNotebook.controllers :posts do
   end 
   
   # Finds posts pf a specific type.        
-  get :type, :map => '/type/(:type)/(page)/(:page)' do      
+  get :type, :map => '/type(/:type)(/page/:page)' do      
     pagenum = params[:page].to_i  
     if pagenum.is_a?(Numeric) || params[:page] == nil
       if params[:type] == nil

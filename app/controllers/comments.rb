@@ -21,7 +21,7 @@ DbdNotebook.controllers :comments do
         error_hash = {:errorCode => :failure, :message => @comment.errors.full_messages}
         ret = error_hash.to_json
       end     
-      Delayed::Job.enqueue(CommentSpam.new(@comment.id))  
+      Resque.enqueue(CommentSpam, @comment.id)  
       ret
     else
       "This form only accpts a valid submission submitted via ajax. Please enable javascript in your browser and try again."
