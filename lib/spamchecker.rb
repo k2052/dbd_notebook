@@ -6,8 +6,6 @@ class CommentSpam
   def self.perform(commentID) 
     require 'defender'    
     comment = Comment.first(:id => commentID)   
-    comment.checked = true
-    comment.save
     Defender.api_key = ENV['DEFENSIO_KEY']
     document         = Defender::Document.new  
     
