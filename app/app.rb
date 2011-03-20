@@ -6,7 +6,6 @@ class DbdNotebook < Padrino::Application
   
   # Padrino Core
   register Padrino::Helpers   
-  register NavvyInitializer
   register DefenderInitializer       
   
   # Resources. JS, CSS handling ext

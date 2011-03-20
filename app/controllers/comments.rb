@@ -21,7 +21,7 @@ DbdNotebook.controllers :comments do
         error_hash = {:errorCode => :failure, :message => @comment.errors.full_messages}
         ret = error_hash.to_json
       end     
-      Navvy::Job.enqueue(SpamChecker, :comment_spam, @comment.id)   
+      Delayed::Job.enqueue(CommentSpam.new(@comment.id))  
       ret
     else
       "This form only accpts a valid submission submitted via ajax. Please enable javascript in your browser and try again."
@@ -30,17 +30,19 @@ DbdNotebook.controllers :comments do
   
   # Validate Callback For Defensio
   post :validate, :map => '/comments/validate/:commentid' do   
-    @comment = Comment.first(:id => params[:commentid]) 
-    @post = Post.first(:id => @comment.post_id) 
-    cdoc = params[:document]
-    if cdoc.allow == false   
-      @post.comment_count = @post.comment_count - 1         
-      @post.save    
-    elsif cdoc.allow == true
-      @post.comment_count = @post.comment_count + 1   
-      @post.save
-    end        
-    Comment.spam_update(@comment.id, cdoc.allow)
+    @comment = Comment.first(:id => params[:commentid])   
+    if !@comment.empty?
+      @post = Post.first(:id => @comment.post_id) 
+      cdoc = params[:document]
+      if cdoc.allow == false   
+        @post.comment_count = @post.comment_count - 1         
+        @post.save    
+      elsif cdoc.allow == true
+        @post.comment_count = @post.comment_count + 1   
+        @post.save
+      end        
+      Comment.spam_update(@comment.id, cdoc.allow)  
+    end 
   end 
 
 end

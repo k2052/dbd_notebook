@@ -1,8 +1,7 @@
-# Runs a spam check using defensio
-module SpamChecker     
-  extend self  
-  
-  def comment_spam(commentID, parent_comment_id = nil)     
+# Runs a spam check using defensio   
+
+class CommentSpam < Struct.new(:commentID)
+  def perform     
     comment = Commend.first(:id => commentID) 
     Defender.api_key = ENV['DEFENSIO_KEY']
     document         = Defender::Document.new  
@@ -15,6 +14,5 @@ module SpamChecker
     document.data[:author_url]     = comment.url
     document.data[:async]          = true    
     document.data[:async_callback] = "http://notebook.designbreakdown.com/comments/validate/#{comment.id}"  
-  end  
-  
+  end
 end
