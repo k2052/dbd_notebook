@@ -3,7 +3,8 @@
 class CommentSpam
   @queue = :comments 
   
-  def self.perform(commentID) 
+  def self.perform(commentID)    
+    require 'rubygems'
     require 'defender'    
     comment = Comment.first(:id => commentID)   
     Defender.api_key = ENV['DEFENSIO_KEY']
