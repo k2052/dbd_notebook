@@ -6,7 +6,7 @@ DbdNotebook.controllers :comments do
       slug = params[:slug].match(/^([A-Za-z0-9-]+)/i).to_s    
       @post = Post.find_by_slug(:slug => slug)
       @comment = Comment.new(params[:comment])        
-      @comment.allow = false
+      @comment.spam = true
       @comment.checked = false
       @comment.post_id = @post.id    
       if @comment.save   
@@ -20,29 +20,13 @@ DbdNotebook.controllers :comments do
       else       
         error_hash = {:errorCode => :failure, :message => @comment.errors.full_messages}
         ret = error_hash.to_json
-      end     
-      Resque.enqueue(CommentSpam, @comment.id)  
+      end 
+      request_hash = gen_request_hash
+      Resque.enqueue(CommentSpam, @comment.id, request_hash)  
       ret
     else
       "This form only accpts a valid submission submitted via ajax. Please enable javascript in your browser and try again."
     end
-  end
-  
-  # Validate Callback For Defensio
-  post :validate, :map => '/comments/validate/:commentid' do   
-    @comment = Comment.first(:id => params[:commentid])   
-    if !@comment.empty?
-      @post = Post.first(:id => @comment.post_id) 
-      cdoc = params[:document]
-      if cdoc.allow == false   
-        @post.comment_count = @post.comment_count - 1         
-        @post.save    
-      elsif cdoc.allow == true
-        @post.comment_count = @post.comment_count + 1   
-        @post.save
-      end        
-      Comment.spam_update(@comment.id, cdoc.allow)  
-    end 
   end 
-
+  
 end

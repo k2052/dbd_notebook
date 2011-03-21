@@ -1,8 +1,8 @@
 require 'kramdown' 
 require 'sanitize'
 class Comment
-  include MongoMapper::Document
-  plugin MongoMapper::Plugins::Timestamps   
+  include MongoMapper::Document   
+  plugin MongoMapper::Plugins::Timestamps    
 
   # Keys  
   key :depth,         Integer, :default => 0
@@ -19,7 +19,7 @@ class Comment
   key :url,           String
   key :cmnt_src,      String
   key :comment,       String     
-  key :allow,         Boolean
+  key :spam,          Boolean, :default => true
   key :checked,       Boolean   
   key :gravatar_hash, String
   timestamps!  
@@ -77,13 +77,13 @@ class Comment
   
   # Lists Flagged Comments
   def self.flagged_comments  
-    flagged = Comment.all(:allow => false)
+    flagged = Comment.all(:spam => true)
     return flagged
   end 
   
   # Return an array of comments, threaded.
   def self.threaded_with_field(post, field_name='created_at')
-    comments = Comment.all(:conditions => {:post_id => post.id, :allow => true, :checked => true}, :order => "path asc, #{field_name} asc")
+    comments = Comment.all(:conditions => {:post_id => post.id, :spam => false, :checked => true}, :order => "path asc, #{field_name} asc")
     results, map  = [], {}
     comments.each do |comment|  
       if comment.parent_id.blank?
@@ -117,20 +117,25 @@ class Comment
   # Spam Methods.
   #      
   
-  def self.spam_update(commentID, allow)          
+  def self.spam_update(commentID, spam)          
     commentID = BSON::ObjectId.from_string(commentID) 
-    Comment.collection.update({'_id' => commentID}, {'$set' => {'allow' => allow, 'checked' => true} })
+    Comment.collection.update({'_id' => commentID}, {'$set' => {'spam' => spam, 'checked' => true} })
   end
   
   def self.mark_as_spam(commentID) 
     commentID = BSON::ObjectId.from_string(commentID)  
-    Comment.collection.update({'_id' => commentID}, {'$set' => {'allow' => false, 'checked' => true} })
+    Comment.collection.update({'_id' => commentID}, {'$set' => {'spam' => true, 'checked' => true} })
   end 
   
   def self.unmark_as_spam(commentID) 
     commentID = BSON::ObjectId.from_string(commentID)  
-    Comment.collection.update({'_id' => commentID}, {'$set' => {'allow' => true, 'checked' => true} })
-  end
+    Comment.collection.update({'_id' => commentID}, {'$set' => {'spam' => false, 'checked' => true} })
+  end   
+  
+  # Determine spaminess using defension  
+  def spam?   
+    spam = Akismet.spam?(akismet_attributes, request)
+  end 
   
   private       
   
@@ -162,6 +167,5 @@ class Comment
     
     def gen_gravatar_hash()    
       self.gravatar_hash   = Digest::MD5.hexdigest(self.email.downcase)
-    end
-  
+    end    
 end

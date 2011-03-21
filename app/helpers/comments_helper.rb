@@ -17,6 +17,21 @@ DbdNotebook.helpers do
         @comments_render += '</li>'   
       end
     end
-  end  
+  end       
+  
+  def gen_request_hash()
+    ret_hash = { 
+      :remote_ip => @env['REMOTE_ADDR'], 
+      :headers => { 
+        'USER_AGENT'      => @env['USER_AGENT'],  
+        'REFERER'         => @env['REFERER'],  
+        'REMOTE_ADDR'     => @env['REMOTE_ADDR'],  
+        'CLIENT_IP'       => @env['CLIENT_IP'],  
+        'X_FORWARDED_FOR' => @env['CONNECTION'],  
+        'CONNECTION'      => @env['CONNECTION'], 
+      }
+    }  
+    return ret_hash
+  end
   
 end

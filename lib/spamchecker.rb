@@ -3,20 +3,32 @@
 class CommentSpam
   @queue = :comments 
   
-  def self.perform(commentID)    
-    require 'rubygems'
-    require 'defender'    
-    comment = Comment.first(:id => commentID)   
-    Defender.api_key = ENV['DEFENSIO_KEY']
-    document         = Defender::Document.new  
-    
-    document.data[:content]        = comment.cmnt_src
-    document.data[:type]           = 'comment'
-    document.data[:platform]       = 'rails' 
-    document.data[:author_email]   = comment.email
-    document.data[:author_name]    = comment.name
-    document.data[:author_url]     = comment.url
-    document.data[:async]          = true    
-    document.data[:async_callback] = "http://notebook.designbreakdown.com/comments/validate/#{comment.id}"  
+  def self.perform(commentID, request)        
+    Akismet.key    = ENV["AKISMET_KEY"]
+    Akismet.blog   = 'http://notebook.designbreakdown.com'
+    Akismet.logger = Padrino.logger
+        
+    @comment = Comment.first(:id => commentID)   
+    @post    = Post.first(:id => @comment.post_id)     
+    @comment.spam = Akismet.spam?(akismet_attributes, request)       
+    @comment.checked = true      
+    if @comment.spam == false 
+      @comment.save 
+      @post.comment_count = @post.comment_count + 1  
+      @post.save
+    else 
+      @comment.destroy  
+    end
   end  
+  
+  def self.akismet_attributes
+    {
+      :comment_author       => @comment.name,
+      :comment_author_url   => @comment.url,
+      :comment_author_email => @comment.email,
+      :comment_content      => @comment.comment,
+      :permalink            => "http://notebook.designbreakdown.com/#{@post.slug}"
+    }
+  end
+  
 end
