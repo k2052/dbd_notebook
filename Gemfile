@@ -8,7 +8,8 @@ gem 'thin' # or mongrel
 
 # Component requirements   
 gem 'magic' 
-gem 'rmagick'
+gem 'rmagick' 
+gem 'chunky_png', "0.9.0"
 gem 'lemonade' 
 gem 'compass'
 gem 'haml'
