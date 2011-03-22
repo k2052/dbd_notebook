@@ -27,7 +27,7 @@ DbdNotebook.controllers :posts do
     if pagenum.is_a?(Numeric) || params[:page] == nil    
       if params[:tag] != nil     
         tag = params[:tag].match(/^([A-Za-z0-9-]+)/i).to_s 
-        @pager = Paginator.new(Post.count, 5) do |offset, per_page|  
+        @pager = Paginator.new(Post.count, 15) do |offset, per_page|  
           Post.all(:skip => offset, :limit => per_page, :order => 'updated_at desc', :tags => tag)
         end    
         @posts = @pager.page(pagenum)
