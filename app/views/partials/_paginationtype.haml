@@ -1,0 +1,9 @@
+.clear
+#pagination-wrap.wrapper
+  %ul.pagination
+    - if @posts.prev 
+      %li.prev
+        %a{:href => "/type/#{strip_tags(params[:type])}/page/#{@posts.prev.number}"} Previous
+    - if @posts.next                                    
+      %li.next                                          
+        %a{:href => "/type/#{strip_tags(params[:type])}/page/#{@posts.next.number}"} Next

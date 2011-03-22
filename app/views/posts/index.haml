@@ -18,4 +18,5 @@
             - pclass = 'even' + ' ' + @post.class.to_s.downcase        
           %li.post{:class => pclass}
             = partial "#{@post.class.to_s.pluralize.downcase}/#{@post.class.to_s.downcase}"    
+    = partial "partials/pagination"
     = partial "partials/footer"           

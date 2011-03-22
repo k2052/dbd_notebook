@@ -1,6 +1,6 @@
 DbdNotebook.controllers :posts do     
   
-  get :index, :map => "/", :provides => [:html, :rss] do   
+  get :index, :map => "/(page)(:page)", :provides => [:html, :rss] do   
     options = {:order => 'updated_at desc'}
     pagenum = params[:page].to_i
     if pagenum.is_a?(Numeric) || params[:page] == nil
@@ -15,7 +15,7 @@ DbdNotebook.controllers :posts do
     else
       "Hi, my name is bob. What is yours?"
     end
-  end     
+  end  
   
   # Finds post with a specific tag.
   # We use the paginator gem; although it requires more effort to setup its worth it for the control it offers.

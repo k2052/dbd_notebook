@@ -400,4 +400,19 @@ article.note
 
  #post article.note .meta_bottom .links,
 #posts article.note .meta_bottom .links { margin: 18px auto 0 auto }
-             #post article.note .bottom { margin-top: -28px }
+             #post article.note .bottom { margin-top: -28px }   
+               
+#pagination-wrap
+{
+  a {
+    background: none repeat scroll 0 0 #444444;
+    color: #FEFEFE;
+    font-family: Museo,"Helvetica Neu",Helvetica,sans-serif;
+    padding: 6px;
+  }  
+  a:hover {
+    color: #fffd0a;
+  }  
+  li { float: left; }    
+  li.next { margin-left: 20px; }
+}
