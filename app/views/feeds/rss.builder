@@ -11,11 +11,11 @@ xml.rss("version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/") do
         xml.title post.title
         xml.link "http://#{env['HTTP_HOST']}" + url(:posts, :show, :slug => post.slug)
         xml.guid "http://#{env['HTTP_HOST']}" + url(:posts, :show, :slug => post.slug)  
-        if post.intro  
+        if post.respond_to?('intro')
           xml.description post.intro + "\n <a href='http://#{env['HTTP_HOST'] + url(:posts, :show, :slug => post.slug)}'> Read More </a>"   
-        elsif post.quote  
+        elsif post.respond_to?('quote')
           xml.description post.quote
-        elsif post.commentary
+        elsif post.respond_to?('commentary'
           xml.description post.commentary    
         end  
       end    
