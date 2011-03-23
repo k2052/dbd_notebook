@@ -1,6 +1,28 @@
 DbdNotebook.controllers :posts do     
   
-  get :index, :map => "/(page)(:page)", :provides => [:html, :rss] do   
+  get :index, :map => "/", :provides => [:html, :rss] do   
+    options = {:order => 'updated_at desc'}
+    @pager = Paginator.new(Post.count, 15) do |offset, per_page|
+      options[:skip]   = offset 
+      options[:limit]  = per_page  
+      options[:status] = :public
+      Post.all(options)  
+    end
+    @posts = @pager.page    
+    render "posts/index" 
+  end  
+  
+  get :show, :map => "/:slug/" do   
+    slug = params[:slug].match(/^([A-Za-z0-9-]+)/i).to_s  
+    if !slug.empty?
+      @post = Post.find_by_slug(:slug => slug)   
+      not_found unless @post               
+      @comments = Comment.threaded_with_field(@post)   
+      render "#{@post.class.to_s.downcase.pluralize}/#{@post.class.to_s.downcase}"    
+    end     
+  end
+  
+  get :pages, :map => "/(page)(:page)" do   
     options = {:order => 'updated_at desc'}
     pagenum = params[:page].to_i
     if pagenum.is_a?(Numeric) || params[:page] == nil
@@ -15,7 +37,7 @@ DbdNotebook.controllers :posts do
     else
       "Hi, my name is bob. What is yours?"
     end
-  end  
+  end
   
   # Finds post with a specific tag.
   # We use the paginator gem; although it requires more effort to setup its worth it for the control it offers.
@@ -66,16 +88,6 @@ DbdNotebook.controllers :posts do
       render 'posts/type'   
     end
   end    
-  
-  get :show, :map => "/:slug/" do   
-    slug = params[:slug].match(/^([A-Za-z0-9-]+)/i).to_s  
-    if !slug.empty?
-      @post = Post.find_by_slug(:slug => slug)   
-      not_found unless @post               
-      @comments = Comment.threaded_with_field(@post)   
-      render "#{@post.class.to_s.downcase.pluralize}/#{@post.class.to_s.downcase}"    
-    end     
-  end  
   
   get :rss, :map => "/feeds" do
     content_type :rss, :charset => "UTF-8"
