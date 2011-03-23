@@ -8,7 +8,7 @@ DbdNotebook.controllers :posts do
       options[:status] = :public
       Post.all(options)  
     end
-    @posts = @pager.page    
+    @posts = @pager.page(0)    
     render "posts/index" 
   end  
   
