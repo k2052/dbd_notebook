@@ -43,6 +43,5 @@ Admin.controllers :lists do
       flash[:notice] = 'List destruction failed. Maybe get a better death star? Without the weak spot?'
     end
     redirect url(:things, :edit, :id => @list.thing_id)    
-  end
-  
+  end 
 end

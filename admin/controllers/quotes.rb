@@ -43,6 +43,5 @@ Admin.controllers :quotes do
       flash[:error] = 'Impossible destroy Quote!'
     end
     redirect url(:quotes, :index)
-  end 
-  
+  end  
 end

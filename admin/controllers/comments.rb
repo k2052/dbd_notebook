@@ -67,5 +67,4 @@ Admin.controllers :comments do
     end
     redirect url(:comments, :index)
   end  
-  
 end

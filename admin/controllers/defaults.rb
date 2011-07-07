@@ -43,6 +43,5 @@ Admin.controllers :defaults do
       flash[:error] = 'Impossible destroy Default!'
     end
     redirect url(:defaults, :index)
-  end   
-  
+  end     
 end

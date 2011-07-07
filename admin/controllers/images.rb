@@ -26,6 +26,5 @@ Admin.controllers :images do
       flash[:notice] = 'Image destruction failed. Maybe get a better death star? Without the weak spot?'
     end
     redirect url(:galleries, :edit, :id => params[:pid])    
-  end 
-  
+  end   
 end

@@ -44,5 +44,4 @@ Admin.controllers :tasks do
     end
     redirect url(:things, :edit, :id => @task.thing_id)    
   end
-  
 end

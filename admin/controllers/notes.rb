@@ -44,5 +44,4 @@ Admin.controllers :notes do
     end
     redirect url(:notes, :index)
   end    
-  
 end

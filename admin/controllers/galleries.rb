@@ -43,6 +43,5 @@ Admin.controllers :galleries do
       flash[:error] = 'Impossible destroy Gallery!'
     end
     redirect url(:galleries, :index)
-  end 
-    
+  end   
 end

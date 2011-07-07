@@ -50,5 +50,4 @@ Admin.controllers :videos do
     @video.file = params[:file]  
     @video.save       
   end
-  
 end

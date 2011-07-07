@@ -28,5 +28,4 @@ Admin.controllers :commentaries do
       redirect url(params[:type].downcase.pluralize.to_sym, :edit, :id => @parent.id)
     end
   end   
-  
 end

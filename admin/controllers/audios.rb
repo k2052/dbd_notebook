@@ -50,6 +50,5 @@ Admin.controllers :audios do
     @audio = Audio.find(params[:id]) 
     @audio.file = params[:file]  
     @audio.save       
-  end
-  
+  end  
 end

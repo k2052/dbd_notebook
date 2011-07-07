@@ -44,5 +44,4 @@ Admin.controllers :things do
     end
     redirect url(:things, :index)
   end  
-  
 end
