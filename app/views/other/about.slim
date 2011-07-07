@@ -1,0 +1,13 @@
+doctype 5
+html lang="en" 
+  head
+    meta charset="UTF-8"
+    title About A Notebook
+    == include_css :bundle => 'index'
+    == include_js :bundle => 'index'
+  body.index
+    - @page = "about"
+    == partial "partials/header"
+    section.wrapper
+      h1.page_title Working on it
+    == partial "partials/footer"

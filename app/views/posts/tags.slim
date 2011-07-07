@@ -1,0 +1,21 @@
+doctype 5
+html lang="en" 
+  head
+    meta charset="UTF-8"
+    title The Daily Notebook Of A; slightly insane, compulsively obsessed, arrogantly humble developer/designer.
+    == include_css :bundle => 'index'
+    == include_js :bundle => 'index'
+    link href=(url(:posts, :rss) rel=:alternate title=:rss) type="application/rss+xml"
+  body.index
+    == partial "partials/header"
+    section#posts.wrapper
+      ul#posts_list
+        - @posts.each_with_index do |@post, index|
+          - if index % 2 == 0
+            - pclass = 'odd' + ' ' + @post.class.to_s.downcase
+          - else
+            - pclass = 'even' + ' ' + @post.class.to_s.downcase
+          li.post class=(pclass)
+            == partial "#{@post.class.to_s.pluralize.downcase}/#{@post.class.to_s.downcase}"
+    == partial "partials/paginationtags"
+    == partial "partials/footer"

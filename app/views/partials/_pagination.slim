@@ -1,0 +1,9 @@
+.clear
+#pagination-wrap.wrapper
+  ul.pagination
+    - if @posts.prev
+      li.prev
+        a href="/page/#{@posts.prev.number}"
+    - if @posts.next
+      li.next
+        a href="/page/#{@posts.next.number}"
