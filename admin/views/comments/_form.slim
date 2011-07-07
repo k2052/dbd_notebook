@@ -1,0 +1,51 @@
+.group
+  ==f.label :checked
+  ==f.error_message_on :checked
+  ==f.check_box :checked, :class => :check_box
+  span.description Ex: a simple text
+
+.group
+  ==f.label :allow
+  ==f.error_message_on :allow
+  ==f.check_box :allow, :class => :check_box
+  span.description Ex: a simple text
+
+.group
+  ==f.label :comment
+  ==f.error_message_on :comment
+  ==f.text_field :comment, :class => :text_field
+  span.description Ex: a simple text
+
+.group
+  ==f.label :post_id
+  ==f.error_message_on :post_id
+  ==f.text_field :post_id, :class => :text_field
+  span.description Ex: a simple text
+
+.group
+  ==f.label :last_name
+  ==f.error_message_on :last_name
+  ==f.text_field :last_name, :class => :text_field
+  span.description Ex: a simple text
+
+.group
+  ==f.label :cmnt_src
+  ==f.error_message_on :cmnt_src
+  ==f.text_field :cmnt_src, :class => :text_field
+  span.description Ex: a simple text
+
+.group
+  ==f.label :email
+  ==f.error_message_on :email
+  ==f.text_field :email, :class => :text_field
+  span.description Ex: a simple text
+
+.group
+  ==f.label :first_name
+  ==f.error_message_on :first_name
+  ==f.text_field :first_name, :class => :text_field
+  span.description Ex: a simple text
+
+.group.navform.wat-cf
+  ==f.submit pat(:save), :class => :button
+  ==f.submit pat(:cancel), :onclick => "window.location='#{url(:comments, :index)}';return false", :class => :button

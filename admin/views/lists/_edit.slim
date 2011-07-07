@@ -1,0 +1,4 @@
+h4.list_title Form For #{@list.title}
+-form_for :list, url(:lists, :update, :id => @list.id), :method => :put, :class => :form do |f|
+  ==partial "lists/form", :locals => { :f => f}
+==button_to pat(:delete), url(:lists, :destroy, :id => @list.id), :method => :delete, :class => :button_to

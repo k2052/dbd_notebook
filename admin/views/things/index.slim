@@ -1,0 +1,31 @@
+.block
+  .secondary-navigation
+    ul.wat-cf
+      li.first.active==link_to pat(:list), url(:things, :index)
+      li==link_to pat(:new), url(:things, :new)
+  .content
+    h2.title
+      =pat(:all)
+      =mt(:thing)
+    .inner
+      table.table
+        tr
+          th.first=mat(:thing, :title)
+          th=mat(:thing, :updated_at)
+          th=mat(:thing, :comment_count)
+          th=mat(:thing, :status)
+          th.last="&nbsp;"
+        -@things.each do |thing|
+          tr
+            td.first=thing.title
+            td=thing.updated_at
+            td=thing.comment_count
+            td=thing.status
+            td.last
+              ==button_to pat(:edit), url(:things, :edit, :id => thing.id), :method => :get, :class => :button_to
+              ="|"
+              ==button_to pat(:delete), url(:things, :destroy, :id => thing.id), :method => :delete, :class => :button_to
+      .actions-bar.wat-cf
+        .actions="&nbsp;"
+
+-content_for :sidebar, partial("base/sidebar")

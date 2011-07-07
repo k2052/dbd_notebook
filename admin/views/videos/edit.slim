@@ -1,0 +1,20 @@
+.block
+  .secondary-navigation
+    ul.wat-cf
+      li.first==link_to pat(:list), url(:videos, :index)
+      li==link_to pat(:new), url(:videos, :new)
+      li.active==link_to pat(:edit), url(:videos, :edit, :id => @video.id)
+  .content
+    h2.title
+      =pat(:edit)
+      =mt(:video)
+    .inner
+      -form_for :video, url(:videos, :update, :id => @video.id), :method => :put, :class => :form do |f|
+        ==partial "videos/form", :locals => { :f => f }
+      #file_form
+        | Video Upload
+        .filelist No runtime found.
+        a#pickfiles href="#{url(:videos, :upload_video id=@video.id)}"
+        a.uploadfiles href="#"
+
+-content_for :sidebar, partial("base/sidebar")

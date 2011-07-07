@@ -1,0 +1,41 @@
+.block
+  .secondary-navigation
+    ul.wat-cf
+      li.first.active==link_to pat(:list), url(:comments, :index)
+      li==link_to pat(:new), url(:comments, :new)
+  .content
+    h2.title
+      =pat(:all)
+      =mt(:comment)
+    .inner
+      table.table
+        tr
+          th.first=mat(:comment, :checked)
+          th=mat(:comment, :spam)
+          th=mat(:comment, :created_at)
+          th=mat(:comment, :post_id)
+          th=mat(:comment, :last_name)
+          th=mat(:comment, :cmnt_src)
+          th=mat(:comment, :email)
+          th=mat(:comment, :first_name)
+          th.last="&nbsp;"
+        -@comments.each do |comment|
+          tr
+            td.first=comment.checked
+            td=comment.spam
+            td=comment.created_at
+            td=comment.post_id
+            td=comment.last_name
+            td=comment.cmnt_src
+            td=comment.email
+            td=comment.first_name
+            td.last
+              ==button_to pat(:spam), url(:comments, :spam, :id => comment.id), :method => :get, :class => :button_to
+              ="|"
+              ==button_to pat(:notspam), url(:comments, :notspam, :id => comment.id), :method => :get, :class => :button_to
+              ="|"
+              ==button_to pat(:delete), url(:comments, :destroy, :id => comment.id), :method => :delete, :class => :button_to
+      .actions-bar.wat-cf
+        .actions="&nbsp;"
+
+-content_for :sidebar, partial("base/sidebar")

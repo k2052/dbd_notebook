@@ -5,6 +5,5 @@ class String
     return self if self == nil
     words = self.split()
     words[0..(length-1)].join(' ') + (words.length > length ? end_string : '')
-  end  
-  
+  end  s 
 end

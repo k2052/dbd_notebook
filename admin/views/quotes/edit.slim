@@ -1,0 +1,22 @@
+.block
+  .secondary-navigation
+    ul.wat-cf
+      li.first==link_to pat(:list), url(:quotes, :index)
+      li==link_to pat(:new), url(:quotes, :new)
+      li.active==link_to pat(:edit), url(:quotes, :edit, :id => @quote.id)
+  .content
+    h2.title
+      =pat(:edit)
+      =mt(:quote)
+    .inner
+      -form_for :quote, url(:quotes, :update, :id => @quote.id), :method => :put, :class => :form do |f|
+        ==partial "quotes/form", :locals => { :f => f }
+        
+      - if @quote.commentary === nil
+        -form_for :commentary, url(:commentaries, :create, :type => @quote.class, :pid => @quote.id), :method => :put, :class => :form do |f|
+          ==partial "commentaries/form", :locals => { :f => f }
+      - else
+        -form_for :commentary, url(:commentaries, :update, :type => @quote.class, :pid => @quote.id), :method => :put, :class => :form do |f|
+          ==partial "commentaries/form", :locals => { :f => f }
+          
+-content_for :sidebar, partial("base/sidebar")

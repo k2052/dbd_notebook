@@ -1,0 +1,39 @@
+.group
+  ==f.label :title
+  ==f.error_message_on :title
+  ==f.text_field :title, :class => :text_field
+  span.description Ex: a simple text
+  
+.group
+  ==f.label :quote_src
+  ==f.error_message_on :quote_src
+  ==f.text_area :quote_src, :class => :text_field
+  span.description Ex: a simple text
+
+.group
+  ==f.label :author
+  ==f.error_message_on :author
+  ==f.text_field :author, :class => :text_field
+  span.description Ex: a simple text
+
+.group
+  ==f.label :author_link
+  ==f.error_message_on :author_link
+  ==f.text_field :author_link, :class => :text_field
+  span.description Ex: a simple text
+
+.group
+  ==f.label :tags
+  ==f.error_message_on :tags
+  ==f.text_field :tags, :class => :text_field
+  span.description Ex: a simple text
+
+.group
+  ==f.label :status
+  ==f.error_message_on :status
+  ==f.text_field :status, :class => :text_field
+  span.description Ex: a simple text
+
+.group.navform.wat-cf
+  ==f.submit pat(:save), :class => :button
+  ==f.submit pat(:cancel), :onclick => "window.location='#{url(:quotes, :index)}';return false", :class => :button

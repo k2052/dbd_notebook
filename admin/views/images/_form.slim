@@ -1,0 +1,15 @@
+.group
+  ==f.label :title
+  ==f.error_message_on :title
+  ==f.text_field :title, :class => :text_field
+  span.description Ex: a simple text
+
+.group
+  ==f.label :caption
+  ==f.error_message_on :caption
+  ==f.text_area :caption, :class => :text_field
+  span.description Ex: a simple text
+
+.group.navform.wat-cf
+  ==f.submit pat(:save), :class => :button
+  ==f.submit pat(:cancel), :onclick => "window.location='#{url(:galleries, :index)}';return false", :class => :button

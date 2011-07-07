@@ -1,0 +1,14 @@
+.block
+  .secondary-navigation
+    ul.wat-cf
+      li.first==link_to pat(:list), url(:comments, :index)
+      li.active==link_to pat(:new), url(:comments, :new)
+  .content
+    h2.title
+      =pat(:new)
+      =mt(:comment)
+    .inner
+      -form_for :comment, url(:comments, :create), :class => :form do |f|
+        ==partial "comments/form", :locals => { :f => f }
+
+-content_for :sidebar, partial("base/sidebar")

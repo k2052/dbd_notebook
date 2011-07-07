@@ -1,9 +1,0 @@
-.group
-  =f.label :body_src
-  =f.error_message_on :body_src
-  =f.text_area :body_src, :class => :text_field
-  %span.description Ex: a simple text
-
-.group.navform.wat-cf
-  =f.submit pat(:save), :class => :button
-  =f.submit pat(:cancel), :onclick => "return false", :class => :button

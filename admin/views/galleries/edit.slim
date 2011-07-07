@@ -1,0 +1,21 @@
+.block
+  .secondary-navigation
+    ul.wat-cf
+      li.first==link_to pat(:list), url(:galleries, :index)
+      li==link_to pat(:new), url(:galleries, :new)
+      li.active==link_to pat(:edit), url(:galleries, :edit, :id => @gallery.id)
+  .content
+    h2.title
+      =pat(:edit)
+      =mt(:gallery)
+    .inner
+      -form_for :gallery, url(:galleries, :update, :id => @gallery.id), :method => :put, :class => :form do |f|
+        ==partial "galleries/form", :locals => { :f => f }
+        #file_form
+          | Images upload
+          .filelist No runtime found.
+          a#pickfiles href="#{url(:images, :create pid=@gallery.id)}"
+          a.uploadfiles href="#"
+        ==partial "images/edit"
+        
+-content_for :sidebar, partial("base/sidebar")
