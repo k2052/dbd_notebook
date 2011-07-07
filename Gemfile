@@ -3,20 +3,16 @@ source :rubygems
 # Project requirements 
 gem 'sinatra'
 gem 'rake'
-gem 'rack-flash'
 gem 'thin' # or mongrel  
 
 # Component requirements   
 gem 'magic' 
 gem 'rmagick' 
-gem 'chunky_png', "0.9.0"
-gem 'lemonade' 
 gem 'compass'
-gem 'haml'
+gem 'slim'
 gem 'mongo_mapper'
 gem 'bson_ext', :require => "mongo"       
-gem 'sinatra-minify'
-gem 'carrierwave', "0.5.0.beta2"
+gem 'carrierwave'
 gem 'fog' 
 gem 'kramdown' 
 gem 'coderay'  
@@ -27,8 +23,13 @@ gem 'paginator'
 gem 'chronic'  
 gem 'nokogiri' 
 gem 'whenever'
-gem 'backup'     
-gem 'resque'
+gem 'backup'       
+gem 'resque'     
+gem 'ruby-akismet'   
+gem 'asset_hat', :git => 'git://github.com/bookworm/asset_hat.git'
+gem 'sinatra-flash', :git => "git://github.com/bookworm/sinatra-flash.git"
+gem 'redis' 
+gem 'redis-store'
 
 # Test requirements
 gem 'shoulda', :group => "test"

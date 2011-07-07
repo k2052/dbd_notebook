@@ -1,29 +1,31 @@
 # Defines our constants
 PADRINO_ENV  = ENV["PADRINO_ENV"] ||= ENV["RACK_ENV"] ||= "development"  unless defined?(PADRINO_ENV)
-PADRINO_ROOT = File.expand_path(File.join(File.dirname(__FILE__), '..')) unless defined?(PADRINO_ROOT)
+PADRINO_ROOT = File.expand_path('../..', __FILE__) unless defined?(PADRINO_ROOT)
 
-begin
-  # Require the preresolved locked set of gems.
-  require File.expand_path('../../.bundle/environment', __FILE__)
-rescue LoadError
-  # Fallback on doing the resolve at runtime.
-  require 'rubygems'
-  require 'bundler'
-  Bundler.setup
-end
-
-Bundler.require(:default, PADRINO_ENV.to_sym)
-puts "=> Located #{Padrino.bundle} Gemfile for #{Padrino.env}"
+# Load our dependencies
+require 'rubygems' unless defined?(Gem)
+require 'bundler/setup'
+Bundler.require(:default, PADRINO_ENV)
 
 ##
-# Add here your before load hooks
+# Enable devel logging
 #
-Padrino.before_load do     
-  # Load App Specific Config
-  my_config = File.join(File.dirname(__FILE__), 'config.rb')
-  load(my_config) if File.exists?(my_config)
-end   
+# Padrino::Logger::Config[:development] = { :log_level => :devel, :stream => :stdout }
+# Padrino::Logger.log_static = true
+#
 
-set :padrino_logging, false 
+##
+# Add your before load hooks here
+#
+Padrino.before_load do    
+  env_vars = File.join(File.dirname(__FILE__), 'heroku_env.rb')
+  load(env_vars) if File.exists?(env_vars)
+end
 
-Padrino.load!    
+##
+# Add your after load hooks here
+#
+Padrino.after_load do    
+end
+
+Padrino.load!

@@ -1,27 +1,29 @@
 js:
-  index:     
-    - head.load.min.js
-    - jquery.easing.js
-    - font.js      
-    - showdown.js  
-    - jquery.scrollTo-1.4.2.js 
-    - jquery.nivo.slider.js
-    - index.js   
-  post:        
-    - head.load.min.js
-    - jquery.easing.js
-    - font.js         
-    - showdown.js   
-    - jquery.scrollTo-1.4.2.js   
-    - jquery.nivo.slider.js
-    - index.js          
-    - jquery.labelify.js     
-    - jquery.form.js
-    - jquery.autocomplete.js  
-    - helpers.js
-    - post.js
-css:
-  index: 
-    - index.css  
-  post:
-    - post.css
+  bundles:
+    index:     
+      - head.load.min.js
+      - jquery.easing.js
+      - font.js      
+      - showdown.js  
+      - jquery.scrollTo-1.4.2.js 
+      - jquery.nivo.slider.js
+      - index.js   
+    post:        
+      - head.load.min.js
+      - jquery.easing.js
+      - font.js         
+      - showdown.js   
+      - jquery.scrollTo-1.4.2.js   
+      - jquery.nivo.slider.js
+      - index.js          
+      - jquery.labelify.js     
+      - jquery.form.js
+      - jquery.autocomplete.js  
+      - helpers.js
+      - post.js     
+css: 
+  bundles:
+    index: 
+      - index.css  
+    post:
+      - post.css 
