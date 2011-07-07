@@ -15,7 +15,6 @@ class Note < Post
   before_update :update_rendered
   
   private    
-  
     def generate_rendered()         
       return if body_src.blank? || intro_src.blank?      
       if self.body.blank? 
@@ -35,5 +34,4 @@ class Note < Post
       self.body  = Kramdown::Document.new(self.body_src).to_html   
       self.intro = Kramdown::Document.new(self.intro_src).to_html   
     end  
-  
 end

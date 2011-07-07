@@ -82,7 +82,6 @@ class Task
   end
   
   private        
-  
     def set_path 
       if !self.parent_id.blank?    
         parent        = Task.find(self.parent_id)      
@@ -96,5 +95,4 @@ class Task
     def gen_note_intro
       self.note_intro = self.note.truncate(5)
     end  
-    
 end

@@ -18,7 +18,6 @@ class Quote <Post
   before_update :update_rendered  
   
   private     
-  
     def generate_rendered()         
       return if quote_src.blank? 
       if self.quote.blank? 
@@ -31,6 +30,5 @@ class Quote <Post
     def update_rendered()         
       return if quote_src.blank? 
       self.quote = Kramdown::Document.new(self.quote_src).to_html                 
-    end
-      
+    end 
 end

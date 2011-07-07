@@ -115,5 +115,4 @@ class Thing < Post
         end 
       end
     end    
-    
 end

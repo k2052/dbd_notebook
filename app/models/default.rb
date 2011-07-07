@@ -16,7 +16,6 @@ class Default < Post
   before_update :parse_snippets, :update_rendered               
   
   private         
-     
     # Parses a <snippet> tag in the body and creates code posts for each one.
     # A snippet tag should take the following structure
     # <snippet title="Snippet Title" type="type of code to process">
@@ -89,5 +88,4 @@ class Default < Post
       end
       self.intro = Kramdown::Document.new(self.intro_src).to_html   
     end  
-  
 end

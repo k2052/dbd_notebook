@@ -16,5 +16,4 @@ class Audio < Post
   
   # Associations
   one :commentary
-
 end

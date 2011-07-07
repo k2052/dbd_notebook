@@ -25,12 +25,10 @@ class Comment
   timestamps!  
   
   # Validations
-  if validations.empty?      
-    validates_presence_of     :email 
-    validates_length_of       :email,    :within => 3..100
-    validates_format_of       :email,    :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i  
-    validates_format_of       :url,      :with => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix, :allow_nil => true
-  end  
+  validates_presence_of     :email 
+  validates_length_of       :email,    :within => 3..100
+  validates_format_of       :email,    :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i  
+  validates_format_of       :url,      :with => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix, :allow_nil => true
   
   # Callbacks 
   before_save   :generate_rendered, :set_path, :gen_gravatar_hash
@@ -138,7 +136,6 @@ class Comment
   end 
   
   private       
-  
     def set_path      
       if !self.parent_id.blank?    
         parent        = Comment.find(self.parent_id)

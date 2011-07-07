@@ -30,5 +30,4 @@ class Commentary
       krammed = Kramdown::Document.new(self.body_src).to_html   
       self.body = Sanitize.clean(krammed, Sanitize::Config::BASIC)   
     end
-  
 end

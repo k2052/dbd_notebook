@@ -62,7 +62,6 @@ class List
   # 
 
   private          
-  
     def set_path 
       if !self.parent_id.blank?    
         parent        = List.find(self.parent_id)      
@@ -72,5 +71,4 @@ class List
         self.path     << parent.id.to_s
       end     
     end
-  
 end

@@ -86,5 +86,4 @@ class Post
     results = results.find().to_a
     return results
   end
-  
 end

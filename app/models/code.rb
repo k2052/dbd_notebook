@@ -17,7 +17,6 @@ class Code < Post
   before_update :update_code
   
   private      
-  
     def generate_code()         
       return if self.raw.blank? 
       if self.processed.blank? 
@@ -31,5 +30,4 @@ class Code < Post
       return if self.raw.blank? 
       self.processed = CodeRay.scan(self.raw, self.type.downcase.to_sym).html(:wrap => :div, :line_numbers => :inline, :css => :class)     
     end   
-    
 end
