@@ -6,5 +6,4 @@ DbdNotebook.controllers :codes do
     @code = Post.find_by_slug(:slug => params[:slug])
     @code.raw        
   end  
-  
 end

@@ -28,5 +28,4 @@ DbdNotebook.controllers :comments do
       "This form only accpts a valid submission submitted via ajax. Please enable javascript in your browser and try again."
     end
   end 
-  
 end

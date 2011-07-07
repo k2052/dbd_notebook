@@ -82,6 +82,5 @@ DbdNotebook.controllers :api do
   post :hit_list, :map => '/api/things/hit-list-import' do    
     Thing.hit_list_import(params[:thing])    
     "true"
-  end  
-        
+  end      
 end

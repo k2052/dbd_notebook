@@ -97,6 +97,5 @@ DbdNotebook.controllers :posts do
   
   get :bydate, :map =>"/date/2010/:month" do
     render "posts/bymonth"
-  end    
-  
+  end     
 end
