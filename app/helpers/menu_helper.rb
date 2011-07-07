@@ -23,5 +23,4 @@ DbdNotebook.helpers do
     end
     tag(:ul, :content => content, :class => 'menu')    
   end   
-  
 end

@@ -33,5 +33,4 @@ DbdNotebook.helpers do
     }  
     return ret_hash
   end
-  
 end

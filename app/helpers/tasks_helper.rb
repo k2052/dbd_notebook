@@ -22,5 +22,4 @@ DbdNotebook.helpers do
       end
     end
   end   
-  
 end
