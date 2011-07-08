@@ -13,10 +13,10 @@ DbdNotebook.controllers :api do
 
   post :note_create, :map => '/api/notes/create' do 
     @note = Note.from_json(params[:post])
-    if @note.save
+    if @note.save    
       'Saved Note Successfully'
     else
-      @note.errors.full_messages   
+      halt 400, @note.errors.full_messages   
     end
   end  
   
@@ -42,7 +42,7 @@ DbdNotebook.controllers :api do
     if @default.save
       'Saved Default Post Successfully'
     else
-      @default.errors.full_messages   
+      halt 400, @default.errors.full_messages   
     end
   end   
   
@@ -51,36 +51,16 @@ DbdNotebook.controllers :api do
     if @commentary.save
       'Saved Commentary Successfully'
     else
-      @commentary.errors.full_messages   
+      halt 400, @commentary.errors.full_messages   
     end
   end
   
-  post :thing_create, :map => '/api/things/create' do   
-    thing = JSON.parse(params[:thing])        
-    old = Thing.first(:title => thing['title'])   
-    if old
-      @thing = old    
-      if @thing.update_attributes(thing)   
-        'Updated Thing Successfully'
-      else
-        @thing.errors.full_messages   
-      end
-    else   
-      @thing = Thing.new(thing)     
-      if @thing.save
-        'Saved Thing Successfully'
-      else
-        @thing.errors.full_messages   
-      end
+  post :thing_create, :map => '/api/things/create' do    
+    @thing = Thing.from_json(params[:post])
+    if @thing.save
+      'Saved Thing Successfully'
+    else
+      halt 400, @thing.errors.full_messages   
     end
-  end 
-  
-  # I use this to import items from The Hit List but its just a nested JSON structure
-  # The strucuture should look like the following {'taskname': { "title": "bob", 'another_task_property' : 'task_attribute', 'tasks' : [] } }
-  # I just mixed single quotes and doibles qoutes in a JSON obj oops, don't do that.
-  # TODO Proper HTTP Error Codes 
-  post :hit_list, :map => '/api/things/hit-list-import' do    
-    Thing.hit_list_import(params[:thing])    
-    "true"
   end      
 end
