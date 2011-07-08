@@ -1,12 +1,17 @@
+require 'sinatra/flash'
+require 'redis-store'
 class Admin < Padrino::Application  
   
   ## 
   # Padrino Core
   #
-  register Padrino::Mailer
+  register Padrino::Mailer      
+  register Padrino::Rendering   
   register Padrino::Helpers
-  register Padrino::Admin::AccessControl
-
+  register Padrino::Admin::AccessControl 
+  Padrino.use Rack::Session::Redis 
+  register Sinatra::Flash    
+  
   set :login_page, "/admin/sessions/new"
   disable :store_location
   
