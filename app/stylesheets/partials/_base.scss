@@ -3,10 +3,6 @@
 select, input, textarea, button { font:99% sans-serif; }
            pre, code, kbd, samp { font-family: monospace, sans-serif; }
 
-/*
- * minimal base styles 
- */
-
 body, select, input, textarea { color: #444; }
             h1,h2,h3,h4,h5,h6 { font-weight: bold; }
                          html { -webkit-font-smoothing: antialiased; overflow-y: scroll; }    
@@ -15,14 +11,12 @@ body, select, input, textarea { color: #444; }
 a, a:active, a:visited { color: #607890; }
                a:hover { color: #036; }    
                 a:link { -webkit-tap-highlight-color: #FF5E99; } 
-               
-               
+                              
 ul { margin-left: 0px; }
 ol { margin-left: 0px; list-style-type: decimal; }
 
      small { font-size: 85%; }
 strong, th { font-weight: bold; }
-
 td, td img { vertical-align: top; } 
 
 sub { vertical-align: sub; font-size: smaller; }
@@ -41,7 +35,6 @@ pre {
 .ie7 input[type="checkbox"] { vertical-align: baseline; }
                  .ie6 input { vertical-align: text-bottom; }
 
-/* hand cursor on clickable input elements */
 label, input[type=button], input[type=submit], button { cursor: pointer; }
                                      ::-moz-selection { background: #FF5E99; color: #fff; text-shadow: none; }
                                           ::selection { background: #FF5E99; color: #fff; text-shadow: none; }    
@@ -63,25 +56,14 @@ blockquote:before {
   color: #333;
 }
 
-/* 
- * Non-semantic helper classes 
- */
             .ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
-        .hidden { display: none; visibility: hidden; } 
-.visuallyhidden { 
-                  position: absolute !important;    
-                  clip: rect(1px 1px 1px 1px);
-                  clip: rect(1px, 1px, 1px, 1px); 
-                }    
-     .invisible { visibility: hidden; }
+        .hidden { display: none; visibility: hidden; }
+.visuallyhidden { position: absolute !important; clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px); }
+     .invisible { visibility: hidden }
 
 .clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
       .clearfix { zoom: 1; }
 
-/* 
- * print styles
- * inlined to avoid required HTTP connection www.phpied.com/delay-loading-your-print-css/ 
- */
 @media print {
                 * { background: transparent !important; color: #444 !important; text-shadow: none !important; }
      a, a:visited { color: #444 !important; text-decoration: underline; }
@@ -117,11 +99,7 @@ p {
   margin-bottom: 21px;  
 }
 
-                   a {
-                       :hover, :active, :focus { outline: none; border: none; -moz-outline-style: none; } 
-                       color: #7886AF;  
-                     } 
-:-moz-any-link:focus { outline: none; }
+a { :hover, :active, :focus { outline: none; border: none; -moz-outline-style: none; }
 
 h1, h2, h3 { font-family: Avenir,"Helvetica Neu",Helvetica,Arial,sans-serif; }
 
@@ -131,7 +109,6 @@ h1 {
   color: #7b7a7a;      
 }            
 
-/* flash-messages */    
 .flash { margin: 0 auto; width: 622px; }
 
 .flash .message {
@@ -157,9 +134,10 @@ h1 {
          
 #main 
 {
-  li {
-   padding-left: 4px;  
-   p { padding-left: 2px; }
+  li 
+  {
+    padding-left: 4px;  
+    p { padding-left: 2px; }
   } 
   ul { margin-top: -8px; }
 }   
