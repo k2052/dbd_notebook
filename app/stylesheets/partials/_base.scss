@@ -84,7 +84,15 @@ cufon canvas::-moz-selection { background: #FF5E99; color: #fff; text-shadow: no
 a.hideTxt, span.hideTxt { display:block; } 
                  .clear { clear:both; }   
                   .hide { display:none; }    
-               .wrapper { width:990px; margin:0px auto; }    
+               .wrapper { width:990px; margin:0px auto; }      
+               
+.ulReset, .ulReset li {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  list-style-image: none;
+  list-style-position: none;   
+}      
     
 body {
   font-family: "Helvetica Neu",Helvetica,Arial,sans-serif;

@@ -4,18 +4,18 @@ html lang="en"
     meta charset="UTF-8"
     title The Daily Notebook Of A; slightly insane, compulsively obsessed, arrogantly humble developer/designer.
     == include_css 'index'
-    == include_js :jquery, 'head.load.min', 'jquery.easing', 'font', 'showdown', 'jquery.scrollTo-1.4.2', 'jquery.nivo.slider', 'index'
+    == include_js :jquery, :bundle => 'index'
     link href=="#{url(:posts, :rss)}" rel=:alternate title=:rss type="application/rss+xml"
   body.index
     == partial "partials/header"
     section#posts.wrapper
-      ul#posts_list
-      - @posts.each_with_index do |@post, index|
-        - if index % 2 == 0
-          - @pclass = 'odd' + ' ' + @post.class.to_s.downcase
-        - else
-          - @pclass = 'even' + ' ' + @post.class.to_s.downcase 
-      li.post class=@pclass
-        == partial "#{@post.class.to_s.pluralize.downcase}/#{@post.class.to_s.downcase}"     
+      ul#posts_list.ulReset
+        - @posts.each_with_index do |@post, index|
+          - if index % 2 == 0
+            - @pclass = 'odd' + ' ' + @post.class.to_s.downcase
+          - else
+            - @pclass = 'even' + ' ' + @post.class.to_s.downcase 
+        li.post class=@pclass
+          == partial "#{@post.class.to_s.pluralize.downcase}/#{@post.class.to_s.downcase}"       
     == partial "partials/pagination"
     == partial "partials/footer"
