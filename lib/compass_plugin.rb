@@ -6,28 +6,29 @@ module CompassInitializer
   def self.registered(app)
     require 'sass/plugin/rack'
 
-    Compass.configuration do |config|   
+    Compass.configuration do |config|
       config.project_path = Padrino.root
       config.sass_dir = "app/stylesheets"
       config.project_type = :stand_alone
       config.http_path = "/"
-      config.css_dir = "public/css" 
-      config.images_dir = "public/images" 
-      config.javascripts_dir = "public/js"
-      config.relative_assets  = true    
-      config.output_style = :expanded     
+      config.css_dir = "public/stylesheets"
+      config.images_dir = "public/images"      
+      config.javascripts_dir = "public/javascripts"   
+      config.output_style = :expanded   
+      config.http_images_path = config.http_path + "images"
+
       if Padrino.env == :production   
-        config.http_path = "http://assets0-notebook.designbreakdown.com/"
-        config.images_dir = "public/images"     
-        config.http_images_path  + "/" + 'images'
+        config.http_path = "http://assets0-" + ENV['DOMAIN'] 
+        config.images_dir = "public/images"          
+        config.http_images_path = "/" + 'images'
         config.relative_assets  = false   
         config.asset_host do |asset|
-          "http://assets%d-notebook.designbreakdown.com" % (asset.hash % 4)
+          "http://assets%d-#{ENV['DOMAIN']}" % (asset.hash % 4)
         end        
         config.output_style = :compressed     
-      end  
+      end
     end
-
+    
     Compass.configure_sass_plugin!
     Compass.handle_configuration_change!
 
