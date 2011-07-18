@@ -1,4 +1,4 @@
-# Vlad aint it lovely?
+ # Vlad aint it lovely?
 # We need the following for this to work.
 # Git installed on remote server, Nginx installed on remote server, Sudo perimissions on remote server
 # Thin installed on remote server, and of course Vlad installed locally and remotely  
@@ -9,18 +9,18 @@
 heroku_env = File.join(File.dirname(__FILE__), 'heroku_env.rb')
 load(heroku_env) if File.exists?(heroku_env)
 
-set :deploy_user,      ENV['deploy_user']     
-set :app_name,         ENV['app_name']        
-set :ssh_user,         ENV['ssh_user']        
-set :domain,           ENV['domain']          
-set :app_domain_name,  ENV['app_domain_name'] 
-set :repository,       ENV['repository']      
-set :deploy_to,        ENV['deploy_to']       
-set :nginx_site_path,  ENV['nginx_site_path'] 
+set :deploy_user,      ENV['DEPLOY_USER']     
+set :app_name,         ENV['APP_NAME']        
+set :ssh_user,         ENV['SSH_USER']        
+set :domain,           ENV['DEPLOY_DOMAIN']          
+set :app_domain_name,  ENV['APP_DOMAIN'] 
+set :repository,       ENV['REPOSITORY']      
+set :deploy_to,        ENV['DEPLOY_TO']       
+set :nginx_site_path,  ENV['NGINX_SITE_PATH'] 
 set :deploy_via,       ENV['deploy_via']      
-set :sudo_password,    ENV['sudo_password']   
-set :num_thin_servers, ENV['num_thin_servers']
-set :thin_port,        ENV['thin_port']    
+set :sudo_password,    ENV['SUDO_PASSWORD']   
+set :num_thin_servers, ENV['NUM_THIN_SERVERS']
+set :thin_port,        ENV['THIN_PORT']    
 set :now,              Time.now 
 
 namespace :vlad do   
@@ -87,8 +87,11 @@ namespace :vlad do
   
   remote_task :remote_update_crontab do
     run "cd #{deploy_to} && whenever --update-crontab #{app_name}"
-  end
+  end  
   
+  task :minify do
+    run %x{cd ~/rubyprojects/#{app_name} && bundle exec padrino rake minify }
+  end
 end    
 
 task "vlad:predeploy" => %w[  
@@ -96,6 +99,7 @@ task "vlad:predeploy" => %w[
 ]
 
 task "vlad:deployit" => %w[  
+  vlad:minify
   vlad:setup_git
   vlad:setup_git_local
   vlad:push_git      
@@ -106,7 +110,8 @@ task "vlad:deployit" => %w[
   vlad:remote_update_crontab
 ] 
 
-task "vlad:updateit" => %w[  
+task "vlad:updateit" => %w[    
+  vlad:minify
   vlad:push_git    
   vlad:restart_nginx
 ]
