@@ -21,6 +21,9 @@
 #   Padrino.mount(:app_file => "path/to/file", :app_class => "Blog").to('/')
 #
 
-# Mounts the core application for this project
+# Mounts the core application for this project     
+Padrino.configure_apps do    
+  set :asset_host, ENV['ASSET_HOST'] if Padrino.env == :production   
+end
 Padrino.mount("DbdNotebook").to('/')
 Padrino.mount("Admin").to("/admin")

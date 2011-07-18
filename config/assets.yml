@@ -1,3 +1,4 @@
+asset_host: "http://assets%d-notebook.designbreakdown.com"
 js:
   bundles:
     index:     
