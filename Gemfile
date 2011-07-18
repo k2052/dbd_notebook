@@ -29,7 +29,7 @@ gem 'ruby-akismet'
 gem 'asset_hat', :git => 'git://github.com/bookworm/asset_hat.git'
 gem 'sinatra-flash', :git => "git://github.com/bookworm/sinatra-flash.git"
 gem 'redis' 
-gem 'redis-store'
+gem 'redis-store', :git => "git://github.com/jodosha/redis-store.git"
 
 # Test requirements
 gem 'shoulda', :group => "test"
