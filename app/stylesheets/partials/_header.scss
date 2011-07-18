@@ -1,7 +1,9 @@
+@import "header/*.png";    
+@import "misc/*.png"; 
+@import "contact/*.png";      
+
 #logo {
-  background: sprite-image('header/reserved.png');
-  width: 96px;
-  height: 30px;
+  @include header-sprite(reserved);
   position: absolute;
   top: 25px;
   left: 25px;
@@ -11,10 +13,8 @@
 
 nav 
 {        
-  background: sprite-image('header/menu.png') no-repeat;
-  height: 57px;
-  width: 586px;   
-  
+  @include header-sprite(menu);
+
   ul { margin: 20px 0 0 20px; float: left; }    
   li
   {
@@ -40,9 +40,7 @@ nav
 #gist p { margin-bottom: 0px; }
 
 #day_night {
-  background: sprite-image('header/avatar_bg.png') no-repeat;
-  width: 89px;
-  height: 99px;
+  @include header-sprite(avatar_bg);
   position: absolute;
   right: 25px;
   top: 15px;
@@ -51,18 +49,18 @@ nav
               #switcher { float: left; margin: 28px 0 0 -30px;}
                    #day,
                  #night { width: 21px; height: 21px; margin-bottom: 4px; }
-                   #day { background: sprite-image('header/day_select-default.png') no-repeat }
-                 #night { background: sprite-image('header/night_select-default.png') no-repeat }
+                   #day { @include header-sprite(day_select-default); }
+                 #night { @include header-sprite(night_select-default); }
             #day.active,
-              .day #day { background: sprite-image('header/day_select-active.png') no-repeat }
+              .day #day { @include header-sprite(day_select-active); }
           #night.active,
-          .night #night { background: sprite-image('header/night_select-active.png') no-repeat }
+          .night #night { @include header-sprite(night_select-active); }
            .day #avatar { background: image-url('avatar_day.jpg') no-repeat }
          .night #avatar { background: image-url('avatar_night.jpg') no-repeat }
   .day #day_night_label,
 .night #day_night_label { margin: 12px auto 0 auto }
-  .day #day_night_label { background: sprite-image('header/during_day-label.png') no-repeat; width: 46px; height: 9px; }
-.night #day_night_label { background: sprite-image('header/at_night-label.png') no-repeat; width: 46px; height: 9px; }
+  .day #day_night_label { @include header-sprite(during_day-label);  }
+.night #day_night_label { @include header-sprite(at_night-label);    }
 
 #avatar {
   height: 70px;
@@ -78,9 +76,7 @@ nav
   color: #393939;     
   
   .icon {      
-    background: sprite-image('misc/close.png') no-repeat;
-    width: 22px;
-    height: 22px;
+    @include misc-sprite(close);
     margin: 0px auto;
   }      
   .label { margin-top: 8px; display: block; }
@@ -97,8 +93,8 @@ nav
            .icon { float: left }
               li { margin: 0 16px 16px 0 }
          a.label { padding: 2px 0 0 8px }
-    #email .icon { background: sprite-image('contact/email-icon.png'); width: 16px; height: 16px; }
-  #twitter .icon { background: sprite-image('contact/twitter-icon.png'); width: 16px; height: 16px; }
-    #skype .icon { background: sprite-image('contact/skype-icon.png'); width: 16px; height: 16px; }
-    #gtalk .icon { background: sprite-image('contact/gtalk-icon.png'); width: 16px; height: 16px; }
+    #email .icon { @include contact-sprite(email-icon);   }
+  #twitter .icon { @include contact-sprite(twitter-icon); }
+    #skype .icon { @include contact-sprite(skype-icon);   }
+    #gtalk .icon { @include contact-sprite(gtalk-icon);   }
 }

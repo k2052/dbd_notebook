@@ -1,3 +1,6 @@
+@import "comments/*.png";      
+@import "misc/*.png";  
+
 #comments, #comments_list { margin-top:25px; } 
 
 #comment_form_wrap 
@@ -6,7 +9,7 @@
   position: relative;
   z-index: 100;   
   
-  #comment_close { background: sprite-image('comments/comment_close.png') no-repeat; width: 18px; height: 18px; }
+  #comment_close { @include comments-sprite(close); }
      .field_wrap { float: left; margin-bottom: 10px; position: relative; width: 178px; }
         
   .text_field {
@@ -48,13 +51,11 @@
   
   .required {
     float:right;
-    height: 29px;
     position: absolute;
     right: -17px;
     top: -2px;
-    width: 26px;
     z-index: 10;
-    background: sprite-image('misc/required_ribbon.png') no-repeat;
+    @include misc-sprite(required_ribbon);
   }   
   
   .hidden { display: none; }  
@@ -73,21 +74,19 @@
   }
              
   .arrow {
-    background: sprite-image('comments/comment_form_arrow-vertical.png') no-repeat;
-    height: 14px;
+    @include comments-sprite(form_arrow-vertical);
     left: -8px;
     position: relative;
     top: 30px;
-    width: 13px;    
   }    
   
           .top,
        .bottom,
        .middle { width: 222px }
-          .top { background: sprite-image('comments/comment_form_top-vertical.png') no-repeat; height: 14px; }
+          .top { @include comments-sprite(form_top-vertical); }
        .middle { background: image-url('post_middles/comment_form_middle-vertical.png') repeat-y }
   .bottom_wrap { background: image-url('body.png') repeat }
-       .bottom { background: sprite-image('comments/comment_form_bottom-vertical.png') no-repeat; height: 17px; }
+       .bottom { @include comments-sprite(form_bottom-vertical); }
         .inner { padding: 14px 14px 0 14px }      
       
                   h3 { font-size: 15px; font-weight: normal; margin: -14px 0 14px 0; }
@@ -128,22 +127,20 @@
   } 
                  
   .arrow {
-    background: sprite-image('comments/comment_form_arrow-horizontal.png') no-repeat;
-    height: 14px;
+    @include comments-sprite(form_arrow-horizontal);
     left: -8px;
     position: relative;
     top: 6px;
-    width: 15px; 
     margin: 0px auto;
   }    
   
           .top,
        .bottom,
        .middle { width: 990px }
-          .top { background: sprite-image('comments/comment_form_top-horizontal.png') no-repeat; height: 14px; }
+          .top { @include comments-sprite(form_top-horizontal); }
        .middle { background: image-url('post_middles/comment_form_middle-horizontal.png') repeat-y }
   .bottom_wrap { background: image-url('body.png') repeat }
-       .bottom { background: sprite-image('comments/comment_form_bottom-horizontal.png') no-repeat; height: 17px; }
+       .bottom { @include comments-sprite(form_bottom-horizontal); }
         .inner { padding: 14px 14px 0 14px }
       
                       h3 { font-size: 15px; font-weight: normal; margin: -14px 0 14px 0; }
@@ -169,7 +166,7 @@
     float:left;                  
     
        .avatar { height: 59px; }
-    .avatar_bg { background: sprite-image('comments/avatar_border.png') no-repeat; width: 59px; height: 59px; }    
+    .avatar_bg { @include comments-sprite(avatar_border); }    
     
     img {
       height: 56px;
@@ -195,7 +192,7 @@
   }   
   
   .arrow {
-    background: sprite-image('comments/arrow_left.png') no-repeat;
+    @include comments-sprite(arrow_left);
     width: 11px;
     height: 10px;
     float: left;
@@ -203,7 +200,7 @@
   }    
   
   .date_wrap .icon {
-    background: sprite-image('misc/date_icon.png') no-repeat;
+    @include misc-sprite(date_icon);
     width: 14px;
     height: 14px;
     float: left;

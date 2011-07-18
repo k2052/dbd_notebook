@@ -1,3 +1,4 @@
+@import "snippet/*.png";
 /** These Styles Based on the RailsCast TextMate Theme */
 article.code 
 {
@@ -58,10 +59,10 @@ article.code
           .snippet_top,
        .snippet_bottom,
        .snippet_middle { width: 698px }
-          .snippet_top { height: 74px; background: sprite-image('snippet/snippet_top.png') no-repeat; }
+          .snippet_top { @include snippet-sprite(top); }
        .snippet_middle { background: image-url('post_middles/snippet_middle.png') repeat-y }
   .snippet_bottom_wrap { background: image-url('post_middles/default_middle.png') repeat-y; margin: -79px 0 -14px 0; height: 110px; }
-       .snippet_bottom { height: 79px; background: sprite-image('snippet/snippet_bottom.png') no-repeat; margin-top: -110px; }
+       .snippet_bottom { @include snippet-sprite(bottom); margin-top: -110px; }
 
   .code > pre { white-space: pre; padding: 0px 15px 0 0; word-wrap: normal; }
           .r { color: #ffff00 } /* KeyWord **/
@@ -85,33 +86,27 @@ article.code
   }   
   
   .expand_snippet {
-    background: sprite-image('snippet/expand.png') no-repeat;
+    @include snippet-sprite(expand);
     float: right;
-    height: 24px;
     margin-right: 30px;
     position: relative;
     top: -40px;
-    width: 66px;
     z-index: 100;
     opacity: 0.6;
   }    
     
   .collapse_snippet {
-    background: sprite-image('snippet/collapse.png') no-repeat;
+    @include snippet-sprite(collaspe);
     float: right;
-    height: 24px;
     margin-right: 30px;
     position: relative;
     top: -40px;
-    width: 66px;
     z-index: 100;
     opacity: 0.6;
   }    
 
   .copy_snippet {
-    width: 73px;
-    height: 52px;
-    background: sprite-image('snippet/copy_icon.png') no-repeat;    
+    @include snippet-sprite(copy); 
     text-indent: -9999px;
     display: block;  
     opacity: 0.6;  

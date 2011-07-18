@@ -1,3 +1,6 @@
+@import "slider/*.png"; 
+@import "post/*.png"; 
+
 /* * Base Styles *
    ================================================== */
 /* ===[ The Nivo Slider styles ]=== */
@@ -25,12 +28,12 @@
                
  
 /** My Styles **/   
-             .slider_wrap { width: 656px; min-height: 377px; background: sprite-image('post/image_bg.png') no-repeat; margin: 0px auto; position: relative; top: -15px; }
+             .slider_wrap { width: 656px; min-height: 377px; @include post-sprite(image_bg); margin: 0px auto; position: relative; top: -15px; }
              .nivo_slider { float: left; margin: 8px 0 0 8px; }
          .nivo-controlNav { bottom: -28px; left: 260px; position: absolute; }
-       .nivo-controlNav a { background: sprite-image('slider/image_nav.png') no-repeat; border: 0 none; display: block; float: left; height: 16px; margin: 3px 3px 0 0; text-indent: -9999px; width: 14px; }
-.nivo-controlNav a.active { background: sprite-image('slider/image_nav-active.png') no-repeat; width: 17px; height: 20px; margin-top: 0px; }
+       .nivo-controlNav a { @include slider-sprite(image_nav); border: 0 none; display: block; float: left; margin: 3px 3px 0 0; text-indent: -9999px; }
+.nivo-controlNav a.active { @include slider-sprite(image_nav-active); margin-top: 0px; }
        .nivo-directionNav { display: block !important }
            a.nivo-prevNav { left: -25px }
-     .nivo-directionNav a { background: sprite-image('slider/prev.png') no-repeat; border: 0 none; display: block; height: 22px; text-indent: -9999px; width: 14px; }
-           a.nivo-nextNav { right: -25px; background: sprite-image('slider/next.png') no-repeat; }
+     .nivo-directionNav a { @include slider-sprite(prev); border: 0 none; display: block; text-indent: -9999px; }
+           a.nivo-nextNav { right: -25px; @include slider-sprite(next); }
