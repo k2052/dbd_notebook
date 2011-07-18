@@ -8,7 +8,7 @@ DbdNotebook.controllers :posts do
   end  
   
   # Options
-  before(:pages) do
+  before(:index, :pages) do
     @options = {:order => 'updated_at desc'}            
     @options[:skip]   = offset 
     @options[:limit]  = per_page  
@@ -16,12 +16,8 @@ DbdNotebook.controllers :posts do
   end
   
   get :index, :map => "/", :provides => [:html, :rss] do   
-    options = {:order => 'updated_at desc'}
     @pager = Paginator.new(Post.count, 15) do |offset, per_page|
-      options[:skip]   = offset 
-      options[:limit]  = per_page  
-      options[:status] = :public
-      Post.all(options)  
+      Post.all(@options)  
     end
     @posts = @pager.page(0)    
     render "posts/index" 
