@@ -99,7 +99,9 @@ p {
   margin-bottom: 21px;  
 }
 
-a { :hover, :active, :focus { outline: none; border: none; -moz-outline-style: none; }
+a { 
+  :hover, :active, :focus { outline: none; border: none; -moz-outline-style: none; }
+}
 
 h1, h2, h3 { font-family: Avenir,"Helvetica Neu",Helvetica,Arial,sans-serif; }
 
@@ -145,7 +147,7 @@ h1 {
 .page_title {
   color: #333;
   font-size: 38px;
-  line-height: 62px
+  line-height: 62px;
 }
 
 .page_slogan { color: #aaaaab; font-size: 14px; margin-top: -8px; }    
@@ -159,5 +161,5 @@ h1 {
 }    
 
        .link_to_top { float: right; line-height: 21px; }
-#footer_copy p.copy { float: left }
-      #license_wrap { float: left }      
+#footer_copy p.copy { float: left; }
+      #license_wrap { float: left; }      

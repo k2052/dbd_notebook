@@ -31,9 +31,9 @@
              .slider_wrap { width: 656px; min-height: 377px; @include post-sprite(image_bg); margin: 0px auto; position: relative; top: -15px; }
              .nivo_slider { float: left; margin: 8px 0 0 8px; }
          .nivo-controlNav { bottom: -28px; left: 260px; position: absolute; }
-       .nivo-controlNav a { @include slider-sprite(image_nav); border: 0 none; display: block; float: left; margin: 3px 3px 0 0; text-indent: -9999px; }
-.nivo-controlNav a.active { @include slider-sprite(image_nav-active); margin-top: 0px; }
+       .nivo-controlNav a { height: 16px; width: 14px; @include slider-sprite(image_nav); border: 0 none; display: block; float: left; margin: 3px 3px 0 0; text-indent: -9999px; }
+.nivo-controlNav a.active { width: 17px; height: 20px; @include slider-sprite(image_nav-active); margin-top: 0px; }
        .nivo-directionNav { display: block !important }
            a.nivo-prevNav { left: -25px }
-     .nivo-directionNav a { @include slider-sprite(prev); border: 0 none; display: block; text-indent: -9999px; }
+     .nivo-directionNav a { height: 22px; width: 14px; @include slider-sprite(prev); border: 0 none; display: block; text-indent: -9999px; }
            a.nivo-nextNav { right: -25px; @include slider-sprite(next); }

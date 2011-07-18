@@ -2,7 +2,9 @@
 @import "misc/*.png"; 
 @import "contact/*.png";      
 
-#logo {
+#logo {   
+  width: 96px;
+  height: 30px;
   @include header-sprite(reserved);
   position: absolute;
   top: 25px;
@@ -13,7 +15,9 @@
 
 nav 
 {        
-  @include header-sprite(menu);
+  @include header-sprite(menu);     
+  height: 57px;
+  width: 586px
 
   ul { margin: 20px 0 0 20px; float: left; }    
   li
@@ -39,7 +43,9 @@ nav
 
 #gist p { margin-bottom: 0px; }
 
-#day_night {
+#day_night {  
+  width: 89px;
+  height: 99px;
   @include header-sprite(avatar_bg);
   position: absolute;
   right: 25px;
@@ -59,8 +65,8 @@ nav
          .night #avatar { background: image-url('avatar_night.jpg') no-repeat }
   .day #day_night_label,
 .night #day_night_label { margin: 12px auto 0 auto }
-  .day #day_night_label { @include header-sprite(during_day-label);  }
-.night #day_night_label { @include header-sprite(at_night-label);    }
+  .day #day_night_label { @include header-sprite(during_day-label); width: 46px; height: 9px; }
+.night #day_night_label { @include header-sprite(at_night-label); width: 46px; height: 9px; }
 
 #avatar {
   height: 70px;
@@ -75,9 +81,11 @@ nav
   margin: -70px -150px 0 0;
   color: #393939;     
   
-  .icon {      
+  .icon {   
+    height: 22px;
+    width: 22px;   
     @include misc-sprite(close);
-    margin: 0px auto;
+    margin: 0px auto; 
   }      
   .label { margin-top: 8px; display: block; }
 }                                         

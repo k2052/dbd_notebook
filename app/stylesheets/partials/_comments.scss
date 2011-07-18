@@ -9,7 +9,7 @@
   position: relative;
   z-index: 100;   
   
-  #comment_close { @include comments-sprite(close); }
+  #comment_close { @include comments-sprite(close); width: 18px; height: 18px; }
      .field_wrap { float: left; margin-bottom: 10px; position: relative; width: 178px; }
         
   .text_field {
@@ -50,6 +50,8 @@
   }     
   
   .required {
+    height: 29px;
+    width: 26px; 
     float:right;
     position: absolute;
     right: -17px;
@@ -73,7 +75,9 @@
     top: 13px;
   }
              
-  .arrow {
+  .arrow {  
+    width: 13px;      
+    height: 14px;   
     @include comments-sprite(form_arrow-vertical);
     left: -8px;
     position: relative;
@@ -83,10 +87,10 @@
           .top,
        .bottom,
        .middle { width: 222px }
-          .top { @include comments-sprite(form_top-vertical); }
+          .top { @include comments-sprite(form_top-vertical); height: 14px; }
        .middle { background: image-url('post_middles/comment_form_middle-vertical.png') repeat-y }
   .bottom_wrap { background: image-url('body.png') repeat }
-       .bottom { @include comments-sprite(form_bottom-vertical); }
+       .bottom { @include comments-sprite(form_bottom-vertical); height: 17px; }
         .inner { padding: 14px 14px 0 14px }      
       
                   h3 { font-size: 15px; font-weight: normal; margin: -14px 0 14px 0; }
@@ -127,6 +131,8 @@
   } 
                  
   .arrow {
+    width: 15px;      
+    height: 14px;
     @include comments-sprite(form_arrow-horizontal);
     left: -8px;
     position: relative;
@@ -137,10 +143,10 @@
           .top,
        .bottom,
        .middle { width: 990px }
-          .top { @include comments-sprite(form_top-horizontal); }
+          .top { @include comments-sprite(form_top-horizontal); height: 14px; }
        .middle { background: image-url('post_middles/comment_form_middle-horizontal.png') repeat-y }
   .bottom_wrap { background: image-url('body.png') repeat }
-       .bottom { @include comments-sprite(form_bottom-horizontal); }
+       .bottom { @include comments-sprite(form_bottom-horizontal); height: 17px; }
         .inner { padding: 14px 14px 0 14px }
       
                       h3 { font-size: 15px; font-weight: normal; margin: -14px 0 14px 0; }
@@ -191,10 +197,10 @@
     width: 600px;
   }   
   
-  .arrow {
-    @include comments-sprite(arrow_left);
+  .arrow {     
     width: 11px;
     height: 10px;
+    @include comments-sprite(arrow_left);
     float: left;
     margin: 10px 0 0 -10px;
   }    

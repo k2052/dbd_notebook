@@ -59,10 +59,10 @@ article.code
           .snippet_top,
        .snippet_bottom,
        .snippet_middle { width: 698px }
-          .snippet_top { @include snippet-sprite(top); }
+          .snippet_top { height: 74px; @include snippet-sprite(top); }
        .snippet_middle { background: image-url('post_middles/snippet_middle.png') repeat-y }
   .snippet_bottom_wrap { background: image-url('post_middles/default_middle.png') repeat-y; margin: -79px 0 -14px 0; height: 110px; }
-       .snippet_bottom { @include snippet-sprite(bottom); margin-top: -110px; }
+       .snippet_bottom { height: 79px; @include snippet-sprite(bottom); margin-top: -110px; }
 
   .code > pre { white-space: pre; padding: 0px 15px 0 0; word-wrap: normal; }
           .r { color: #ffff00 } /* KeyWord **/
@@ -84,28 +84,23 @@ article.code
     width: 100%;   
     z-index: 100;
   }   
-  
-  .expand_snippet {
-    @include snippet-sprite(expand);
-    float: right;
-    margin-right: 30px;
-    position: relative;
-    top: -40px;
-    z-index: 100;
-    opacity: 0.6;
-  }    
     
-  .collapse_snippet {
-    @include snippet-sprite(collaspe);
+  .expand_snippet, .collapse_snippet {
+    height: 24px;
+    width: 66px; 
     float: right;
     margin-right: 30px;
     position: relative;
     top: -40px;
     z-index: 100;
     opacity: 0.6;
-  }    
-
-  .copy_snippet {
+  }
+    .expand_snippet { @include snippet-sprite(expand):  }
+  .collapse_snippet { @include snippet-sprite(collapse):  }
+   
+  .copy_snippet {  
+    width: 73px;
+    height: 52px;
     @include snippet-sprite(copy); 
     text-indent: -9999px;
     display: block;  
