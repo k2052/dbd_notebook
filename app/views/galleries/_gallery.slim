@@ -13,9 +13,9 @@ article.gallery
       .bottom
     .meta_bottom
       .links
-         a.read_more href="#{@post.slug}"
-        | \
-        a.leave_comment href="#{@post.slug}/#comment_form"
+        a.read_more href="#{@post.slug}" read more
+        | /
+        a.leave_comment href="#{@post.slug}/#comment_form" leave a comment    
       a.comment_count href="#{@post.slug}/#comment_form"
         span.count= @post.comment_count
   .side_bar

@@ -3,7 +3,7 @@
   ul.pagination
     - if @posts.prev
       li.prev
-        a href="/page/#{@posts.prev.number}"
+        a href="/page/#{@posts.prev.number}" prev
     - if @posts.next
       li.next
-        a href="/page/#{@posts.next.number}"
+        a href="/page/#{@posts.next.number}" next

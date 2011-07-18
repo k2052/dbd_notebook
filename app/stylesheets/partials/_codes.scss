@@ -95,8 +95,8 @@ article.code
     z-index: 100;
     opacity: 0.6;
   }
-    .expand_snippet { @include snippet-sprite(expand):  }
-  .collapse_snippet { @include snippet-sprite(collapse):  }
+    .expand_snippet { @include snippet-sprite(expand); }
+  .collapse_snippet { @include snippet-sprite(collapse);  }
    
   .copy_snippet {  
     width: 73px;

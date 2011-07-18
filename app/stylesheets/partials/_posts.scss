@@ -82,7 +82,7 @@
   }  
   
   .comment_count, .count { display:block; }   
-          .comment_count {   
+          .meta_bottom .comment_count, .meta_bottom .comment_count:hover {   
                            width: 45px;
                            height: 45px;   
                            @include post-sprite(comment_count); 
@@ -399,7 +399,8 @@ article.note
              #post article.note .bottom { margin-top: -28px }   
                
 #pagination-wrap
-{
+{    
+  margin-top: 50px;
   a {
     background: none repeat scroll 0 0 #444444;
     color: #FEFEFE;
