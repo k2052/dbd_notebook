@@ -1,5 +1,6 @@
-css:
-js:
+asset_host: "http://assets%d-notebook.designbreakdown.com"
+js:    
+  engine: jsmin
   bundles:
     index:     
       - head.load.min
@@ -8,7 +9,6 @@ js:
       - showdown  
       - jquery.scrollTo-1.4.2 
       - jquery.nivo.slider
-      - index  
     post:        
       - head.load.min
       - jquery.easing
