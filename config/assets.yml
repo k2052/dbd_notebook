@@ -8,7 +8,8 @@ js:
       - font     
       - showdown  
       - jquery.scrollTo-1.4.2 
-      - jquery.nivo.slider
+      - jquery.nivo.slider 
+      - index
     post:        
       - head.load.min
       - jquery.easing
