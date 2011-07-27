@@ -14,7 +14,7 @@ module CompassInitializer
       config.css_dir = "public/stylesheets"
       config.images_dir = "public/images"      
       config.javascripts_dir = "public/javascripts"   
-      config.output_style = :expanded   
+      config.output_style = :compressed    
       config.http_images_path = config.http_path + "images"
 
       if Padrino.env == :production   
