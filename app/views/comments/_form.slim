@@ -30,10 +30,9 @@
           .field_wrap.submit_wrap
             ==f.submit "submit comment", :class => :button
           .clear
-        a#switch_horizontal.switch_form href="#comment_form"
-        a#switch_vertical.switch_form href="#comment_form" style="display:none;"
+        a#switch_horizontal.switch_form href="#comment_form" horizontal
+        a#switch_vertical.switch_form href="#comment_form" style="display:none;" vertical
     .bottom_wrap
       .bottom
       .char_count
-        span.count 300
-        | chars remain. use them well
+        span.count 300 chars remain. use them well
