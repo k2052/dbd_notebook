@@ -5,7 +5,7 @@ class CommentSpam
   
   def self.perform(commentID, request)        
     Akismet.key    = ENV["AKISMET_KEY"]
-    Akismet.blog   = 'http://notebook.designbreakdown.com'
+    Akismet.blog   = 'http://' + ENV['DOMAIN']
     Akismet.logger = Padrino.logger
         
     @comment = Comment.first(:id => commentID)   
