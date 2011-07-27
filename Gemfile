@@ -25,7 +25,6 @@ gem 'nokogiri'
 gem 'whenever'
 gem 'backup'       
 gem 'resque'     
-gem 'ruby-akismet'   
 gem 'asset_hat', :git => 'git://github.com/bookworm/asset_hat.git'
 gem 'sinatra-flash', :git => "git://github.com/bookworm/sinatra-flash.git"
 gem 'redis' 
