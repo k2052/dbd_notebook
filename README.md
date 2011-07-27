@@ -49,8 +49,6 @@ You'll need to make modifications to the models and controllers to protect again
   
     # Used as an extra salt to encrypt passwords. Refer to app/model/account.rb
     ENV['PASS_SALT_SECRET']         = "XXX"  
-    ENV['TWITTER_CONSUMER_KEY']     = 'XXX'   
-    ENV['TWITTER_CONSUMER_SECRET']  = 'XXX' 
   ` 
 
   #### VLAD/Deployment Enviroment Variables

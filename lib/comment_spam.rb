@@ -30,5 +30,4 @@ class CommentSpam
       :permalink            => "http://notebook.designbreakdown.com/#{@post.slug}"
     }
   end
-  
 end

@@ -17,7 +17,7 @@ set :app_domain_name,  ENV['APP_DOMAIN']
 set :repository,       ENV['REPOSITORY']      
 set :deploy_to,        ENV['DEPLOY_TO']       
 set :nginx_site_path,  ENV['NGINX_SITE_PATH'] 
-set :deploy_via,       ENV['deploy_via']      
+set :deploy_via,       ENV['DEPLOY_VIA']      
 set :sudo_password,    ENV['SUDO_PASSWORD']   
 set :num_thin_servers, ENV['NUM_THIN_SERVERS']
 set :thin_port,        ENV['THIN_PORT']    
@@ -68,8 +68,7 @@ namespace :vlad do
   end   
   
   remote_task :restart_nginx do    
-    run "sudo /etc/init.d/nginx stop"
-    run "sudo /etc/init.d/nginx start"
+    run "sudo /etc/init.d/nginx restart"
   end   
   
   task :create_mongodb_dump do

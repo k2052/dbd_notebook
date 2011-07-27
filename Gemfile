@@ -33,7 +33,11 @@ gem 'redis-store', :git => "git://github.com/jodosha/redis-store.git"
 
 # Test requirements
 gem 'shoulda', :group => "test"
-gem 'rack-test', :require => "rack/test", :group => "test"
+gem 'rack-test', :require => "rack/test", :group => "test"      
+
+platforms :mri_18 do
+  gem "system_timer", ">= 1.0"
+end         
 
 # Padrino
 gem 'padrino', :git => "git://github.com/bookworm/padrino-framework.git"

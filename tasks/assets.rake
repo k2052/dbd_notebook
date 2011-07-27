@@ -9,8 +9,8 @@ namespace :assets do
   task :upload do 
      
     files = Rake::FileList.new(
-      './public/*',
-      './public/**/*'
+      "#{PADRINO_ROOT}/public/*",
+      "#{PADRINO_ROOT}/public/**/*"
     )
       
     ENV['ASSET_HOST_COUNT'].to_i.times do |i|
@@ -19,7 +19,7 @@ namespace :assets do
       prefix = '' 
       files.each do |f|
         next if File.directory?(f)
-        key = f.gsub(/\.\/public/, prefix).gsub(/^[\/]+/, '')
+        key = f.gsub(/public/, prefix).gsub(PADRINO_ROOT, '').gsub(/^[\/]+/, '')
         puts "uploading %s" % key
         attrs = {}  
 
