@@ -1,6 +1,7 @@
 require 'nokogiri'
 class Default < Post
   include MongoMapper::Document
+  include MongoMapperExt::Markdown  
 
   # Keys      
   key :body,  String      

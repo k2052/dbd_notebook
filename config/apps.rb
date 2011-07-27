@@ -26,4 +26,4 @@ Padrino.configure_apps do
   set :asset_host, ENV['ASSET_HOST'] if Padrino.env == :production   
 end
 Padrino.mount("DbdNotebook").to('/')
-Padrino.mount("Admin").to("/admin")
+# Padrino.mount("Admin").to("/admin")

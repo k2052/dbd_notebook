@@ -13,5 +13,4 @@ class Quote <Post
   
   # Associations
   one :commentary
- 
 end

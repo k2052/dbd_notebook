@@ -13,6 +13,5 @@ class Video < Post
   # Key Settings 
   mount_uploader :file, VideoUploader  
   slug_key :title, :unique => true
-  markdown :body, :intro, :parser => 'kramdown'    
-
+  markdown :body, :intro, :parser => 'kramdown'
 end
