@@ -1,7 +1,8 @@
 require 'kramdown' 
 require 'sanitize'
 class Comment
-  include MongoMapper::Document   
+  include MongoMapper::Document       
+  include MongoMapperExt::Markdown  
   plugin MongoMapper::Plugins::Timestamps    
 
   # Keys  
@@ -17,12 +18,14 @@ class Comment
   key :last_name,     String
   key :email,         String
   key :url,           String
-  key :cmnt_src,      String
   key :comment,       String     
   key :spam,          Boolean, :default => true
   key :checked,       Boolean   
   key :gravatar_hash, String
-  timestamps!  
+  timestamps!   
+  
+  # Key Settings
+  markdown :comment, :parser => 'kramdown'         
   
   # Validations
   validates_presence_of     :email 
@@ -31,8 +34,8 @@ class Comment
   validates_format_of       :url,      :with => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix, :allow_nil => true
   
   # Callbacks 
-  before_save   :generate_rendered, :set_path, :gen_gravatar_hash
-  before_update :update_rendered
+  before_save   :sanitize, :set_path, :gen_gravatar_hash
+  before_update :sanitize
   
   # Associations        
   belongs_to :post, :class_name => "Post",  :foreign_key => "post_id"    
@@ -146,21 +149,9 @@ class Comment
       end     
     end       
     
-    def generate_rendered() 
-      return if cmnt_src.blank? 
-      if self.comment.blank? 
-        krammed = Kramdown::Document.new(self.cmnt_src).to_html   
-        self.comment = Sanitize.clean(krammed, Sanitize::Config::BASIC)
-      else
-        return
-      end
+    def sanitize() 
+      self.comment = Sanitize.clean(self.comment, Sanitize::Config::BASIC)
     end      
-    
-    def update_rendered()         
-      return if cmnt_src.blank? 
-      krammed = Kramdown::Document.new(self.cmnt_src).to_html   
-      self.comment = Sanitize.clean(krammed, Sanitize::Config::BASIC)   
-    end  
     
     def gen_gravatar_hash()    
       self.gravatar_hash   = Digest::MD5.hexdigest(self.email.downcase)

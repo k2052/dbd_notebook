@@ -2,18 +2,17 @@ require 'nokogiri'
 class Default < Post
   include MongoMapper::Document
 
-  # Key
-  key :body,      String
-  key :body_src,  String
-  key :intro,     String
-  key :intro_src, String
-  
+  # Keys      
+  key :body,  String      
+  key :intro, String
+
   # Key Settings
-  slug_key :title, :unique => true  
+  slug_key :title, :unique => true
+  markdown :body, :intro, :parser => 'kramdown'   
   
   # Callbacks
-  before_save   :parse_snippets, :generate_rendered
-  before_update :parse_snippets, :update_rendered               
+  before_save   :parse_snippets
+  before_update :parse_snippets           
   
   private         
     # Parses a <snippet> tag in the body and creates code posts for each one.
@@ -25,8 +24,7 @@ class Default < Post
     # Plus its not sanitized and vulnerable to XSS, 
     # but you already knnew that because your not throwing random github code einto production without checking it first right? 
     def parse_snippets()  
-      return if body_src.blank? 
-      @doc = Nokogiri::HTML::fragment(self.body_src)      
+      @doc = Nokogiri::HTML::fragment(self.body)      
       snippets = @doc.css("snippet") 
       return if snippets.empty?    
       new_snippets = []
@@ -63,29 +61,5 @@ class Default < Post
       end        
       @snippet_src = @doc.to_html   
       @doc = nil
-    end   
-    
-    def generate_rendered()         
-      return if body_src.blank? || intro_src.blank?      
-      if self.body.blank? && @snippet_src.blank?
-        self.body = Kramdown::Document.new(self.body_src).to_html           
-      elsif self.body.blank? && !@snippet_src.blank?
-        self.body = Kramdown::Document.new(@snippet_src).to_html    
-      end   
-      if self.intro.blank?  
-        self.intro = Kramdown::Document.new(self.intro_src).to_html 
-      else
-        return
-      end
-    end  
-     
-    def update_rendered()         
-      return if body_src.blank? || intro_src.blank?           
-      if @snippet_src.blank?
-        self.body = Kramdown::Document.new(self.body_src).to_html           
-      else
-        self.body = Kramdown::Document.new(@snippet_src).to_html  
-      end
-      self.intro = Kramdown::Document.new(self.intro_src).to_html   
-    end  
+    end
 end
