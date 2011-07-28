@@ -13,7 +13,7 @@ class Default < Post
   
   # Callbacks
   before_save   :parse_snippets
-  before_update :parse_snippets           
+  before_update :parse_snippets          
   
   private         
     # Parses a <snippet> tag in the body and creates code posts for each one.

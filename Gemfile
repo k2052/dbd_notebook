@@ -3,7 +3,6 @@ source :rubygems
 # Project requirements 
 gem 'sinatra'
 gem 'rake'
-gem 'thin' # or mongrel  
 
 # Component requirements   
 gem 'magic' 
