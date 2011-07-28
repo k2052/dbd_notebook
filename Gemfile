@@ -15,7 +15,7 @@ gem 'mongomapper_ext', :git => "git://github.com/bookworm/mongomapper_ext.git"
 gem 'bson_ext', :require => "mongo"       
 gem 'carrierwave'
 gem 'fog' 
-gem 'kramdown' 
+gem 'kramdown', :git => "git://github.com/bookworm/kramdown.git" 
 gem 'coderay'  
 gem 'ruby-stemmer'
 gem 'sanitize' 
