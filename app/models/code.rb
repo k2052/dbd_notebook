@@ -14,7 +14,11 @@ class Code < Post
   
   # Callbacks
   before_save   :generate_code
-  before_update :update_code
+  before_update :update_code  
+  
+  def url() 
+    "http://" + ENV['DOMAIN'] + '/codes' + "/" + self.slug
+  end
   
   private      
     def generate_code()         
