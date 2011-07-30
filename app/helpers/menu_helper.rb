@@ -6,7 +6,7 @@ DbdNotebook.helpers do
     end
     if menuitems == nil    
       menu_items = [
-          { :name => :home,     :id => :blog,     :url => 'http://notebook.designbreakdown.com', :text => 'Home'}, 
+          { :name => :home,     :id => :blog,     :url => 'http://' + ENV['DOMAIN'], :text => 'Home'}, 
           { :name => :about,    :id => :about,    :url => '/about',                          :text => 'About'}, 
           { :name => :contact,  :id => :contact,  :url => '#contact_popup',                  :text => 'Contact'},
         ]                                  
