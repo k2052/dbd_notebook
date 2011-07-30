@@ -14,6 +14,16 @@ class Default < Post
   
   # Markdown Parser.
   include MongoMapperExt::Markdown     
-  markdown :body, :intro, :parser => 'kramdown'   
+  markdown :body, :intro, :parser => 'kramdown' 
+  
+  before_save   :gen_intro
+  before_update :gen_intro
+  
+  def gen_intro
+    if intro.blank?
+      self.intro = self.body_src.truncate(120)      
+      self.intro = Kramdown::Document.new(self.intro).to_html
+    end
+  end  
     
 end

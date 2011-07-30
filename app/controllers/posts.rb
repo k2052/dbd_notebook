@@ -19,7 +19,7 @@ DbdNotebook.controllers :posts do
       @options[:limit]  = per_page
       Post.all(@options)  
     end
-    @posts = @pager.page(0)    
+    @posts = @pager.page(0)  
     render "posts/index" 
   end  
   

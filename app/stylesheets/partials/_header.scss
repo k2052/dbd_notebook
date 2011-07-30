@@ -84,7 +84,8 @@ nav
   .icon {   
     height: 22px;
     width: 22px;   
-    @include misc-sprite(close);
+    @include misc-sprite(close); 
+    background-position: 0 -20px !important;
     margin: 0px auto; 
   }      
   .label { margin-top: 8px; display: block; }

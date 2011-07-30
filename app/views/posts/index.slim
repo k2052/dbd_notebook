@@ -10,12 +10,13 @@ html lang="en"
     == partial "partials/header"
     section#posts.wrapper
       ul#posts_list.ulReset
-        - @posts.each_with_index do |@post, index|
+        - @posts.each_with_index do |post, index|
+          - @post = post
           - if index % 2 == 0
             - @pclass = 'odd' + ' ' + @post.class.to_s.downcase
           - else
             - @pclass = 'even' + ' ' + @post.class.to_s.downcase 
-        li.post class=@pclass
-          == partial "#{@post.class.to_s.pluralize.downcase}/#{@post.class.to_s.downcase}"       
+          li.post class=@pclass 
+            == partial "#{@post.class.to_s.pluralize.downcase}/#{@post.class.to_s.downcase}"       
     == partial "partials/pagination"
     == partial "partials/footer"
