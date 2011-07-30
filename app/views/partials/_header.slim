@@ -1,6 +1,6 @@
 section#top
   header.wrapper#header
-    a#logo.hideTxt href="http://notebook.designbreakdown.com"
+    a#logo.hideTxt href=="http://#{ENV['DOMAIN']}"
     nav
       noscript Javascript required for site to function properly. Please enable it.
       == menu_builder('home')
