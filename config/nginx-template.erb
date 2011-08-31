@@ -1,28 +1,29 @@
 # File generated on <%=Time.now().strftime("%d %b %y")%>    
 
-# kerickson.me
+# fund.designbreakdown.com
 
-upstream me {
-  server unix:/tmp/me.sock fail_timeout=0;
+upstream <%=app_name%> {
+  server unix:/tmp/<%=app_name%>.sock fail_timeout=0;
 }  
 
 server {
-    listen 80; 
+  listen 80; 
 
-    client_max_body_size 4G;
-    server_name me;
+  client_max_body_size 4G;
+  server_name  www.<%=app_domain_name%>;
+  rewrite ^(.*) http://<%=app_domain_name%>$1 permanent;     
 
-    keepalive_timeout 5;
+  keepalive_timeout 5;
 
-    # path for static files
-    root  /home/<%=deploy_user%>/<%=app_domain_name%>/<%=app_name%>/public;
-    try_files $uri/index.html $uri.html $uri @me_app;
+  # path for static files
+  root  /home/<%=deploy_user%>/<%=app_domain_name%>/<%=app_name%>/public;
+  try_files $uri/index.html $uri.html $uri @<%=app_name%>;
 
-    location @me_app {
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      proxy_set_header Host $http_host;
-      proxy_redirect off;
-      
-      proxy_pass http://me;
-    }       
+  location @<%=app_name%> {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+    
+    proxy_pass http://<%=app_name%>;
+  }       
 }
